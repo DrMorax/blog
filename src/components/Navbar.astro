@@ -5,7 +5,7 @@ import { Icon } from "astro-icon/components";
 
 <nav>
   <a href="/" style="min-width: 64px;">
-    <img src="/logo.svg" alt="Morax" height="36" />
+    <img src="/logo.svg" alt="Morax" height="32" />
   </a>
   <div class="links-wrapper">
     {
@@ -19,7 +19,7 @@ import { Icon } from "astro-icon/components";
 
   <div>
     <div id="themeToggler" class="link">
-      <Icon name="moon" height={"1.25rem"} width={"1.25rem"} />
+      <Icon name="moon" />
     </div>
   </div>
 </nav>
@@ -27,7 +27,7 @@ import { Icon } from "astro-icon/components";
 <style>
   nav {
     background-color: var(--card-background-color);
-    width: calc(var(--max-page-width) - 2rem);
+    max-width: calc(var(--max-page-width) - 2rem);
     margin-inline: auto;
     display: flex;
     align-items: center;

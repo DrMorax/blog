@@ -33,7 +33,7 @@ main {
     --muted-color: #eaeaea;
     --muted-background-color: #7f7f7f;
 
-    --max-page-width: 72rem;
+    --max-page-width: 60rem;
 }
 
 :root .dark {
