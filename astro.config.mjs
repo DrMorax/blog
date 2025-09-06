@@ -1,6 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import path from 'path';
+
+import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,7 +11,15 @@ export default defineConfig({
     server: {
         port: 3000,
     },
-    integrations: [
-        sitemap(),
-    ]
+    vite: {
+        resolve: {
+            alias: {
+                '@': path.resolve('./src'), 
+            },
+        },
+    },
+    integrations: [sitemap(), icon()],
+    prefetch: {
+        defaultStrategy: 'viewport',
+    }
 });

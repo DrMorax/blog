@@ -1,0 +1,52 @@
+---
+import Navbar from "@/components/Navbar.astro";
+import Footer from "@/components/Footer.astro";
+
+import "@/styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <title>Morax</title>
+    <meta
+      name="description"
+      content="A personal stash of tech notes, security experiments, and things I don't want to forget."
+    />
+  </head>
+  <body data-barba="wrapper">
+    <main>
+      <Navbar />
+      <div id="root" data-barba="container" data-barba-namespace="default">
+        <slot />
+        <!-- View transitions -->
+        <script is:inline type="module" src="/scripts/barba.js"></script>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+  // Theme stuff
+  // --- Start ---
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+    }
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.body.classList.add("dark");
+  }
+
+  document.getElementById("themeToggler")?.addEventListener("click", () => {
+    const isDark = document.body.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+  // --- End ---
+</script>

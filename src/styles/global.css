@@ -1,0 +1,63 @@
+html,
+body {
+    font-family: sans-serif;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    color: var(--color);
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+}
+
+#root {
+    max-width: var(--max-page-width);
+    margin-inline: auto;
+}
+
+#root[data-barba="container"] {
+    will-change: opacity, transform;
+}
+
+:root {
+    --primary-color: #e3769b;
+    --color: #191919;
+    --background-color: #f5ecee;
+    --card-background-color: #ffffff;
+    --secondary-color: #a8506f;
+    --secondary-background-color: #fee8ee;
+    --muted-color: #eaeaea;
+    --muted-background-color: #7f7f7f;
+
+    --max-page-width: 72rem;
+}
+
+:root .dark {
+    --primary-color: #f486aa;
+    --color: #e9e8e8;
+    --background-color: #120b0d;
+    --card-background-color: #231a1d;
+    --secondary-color: #d0cacc;
+    --secondary-background-color: #452e35;
+    --muted-color: #eaeaea;
+    --muted-background-color: #150d0f;
+}
+
+::selection {
+    background: var(--primary-color);
+    /* WebKit/Blink Browsers */
+}
+
+.card {
+    background-color: var(--card-background-color);
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+.card h1 {
+    margin: 3px 0;
+}
