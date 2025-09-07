@@ -25,6 +25,7 @@ main {
 
 :root {
     --primary-color: #e3769b;
+    --accent-color: #f9aec7;
     --color: #191919;
     --background-color: #f5ecee;
     --card-background-color: #ffffff;
@@ -38,6 +39,7 @@ main {
 
 :root .dark {
     --primary-color: #f486aa;
+    --accent-color: #ef5387;
     --color: #e9e8e8;
     --background-color: #120b0d;
     --card-background-color: #231a1d;
@@ -48,7 +50,7 @@ main {
 }
 
 ::selection {
-    background: var(--primary-color);
+    background: var(--accent-color);
     /* WebKit/Blink Browsers */
 }
 
