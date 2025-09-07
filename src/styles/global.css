@@ -24,34 +24,35 @@ main {
 }
 
 :root {
+    --color: #191919;
     --primary-color: #e3769b;
     --accent-color: #fcd1dc;
-    --color: #191919;
+    --secondary-color: #a8506f;
+    --muted-color: #eaeaea;
+    
     --background-color: #f5ecee;
     --card-background-color: #ffffff;
-    --secondary-color: #a8506f;
     --secondary-background-color: #fee8ee;
-    --muted-color: #eaeaea;
     --muted-background-color: #7f7f7f;
 
     --max-page-width: 60rem;
 }
 
 :root .dark {
+    --color: #e9e8e8;
     --primary-color: #f486aa;
     --accent-color: #6a3446;
-    --color: #e9e8e8;
+    --secondary-color: #d0cacc;
+    --muted-color: #eaeaea;
+
     --background-color: #120b0d;
     --card-background-color: #231a1d;
-    --secondary-color: #d0cacc;
     --secondary-background-color: #452e35;
-    --muted-color: #eaeaea;
     --muted-background-color: #150d0f;
 }
 
 ::selection {
     background: var(--accent-color);
-    /* WebKit/Blink Browsers */
 }
 
 .card {
