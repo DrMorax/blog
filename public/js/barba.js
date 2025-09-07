@@ -1,4 +1,4 @@
-import barba from '/js/barba.mjs';
+import barba from "/js/barba.mjs"
 
 barba.init({
   transitions: [

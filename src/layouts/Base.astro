@@ -18,35 +18,17 @@ import "@/styles/global.css";
       name="description"
       content="A personal stash of tech notes, security experiments, and things I don't want to forget."
     />
+    <!-- Theme and view transition stuff -->
+    <script is:inline type="module" src="/js/theme.js" ></script>
+    <script is:inline type="module" src="/js/barba.js"></script>
   </head>
   <body data-barba="wrapper">
     <main>
       <Navbar />
       <div id="root" data-barba="container" data-barba-namespace="default">
         <slot />
-        <!-- View transitions -->
-        <script is:inline type="module" src="/scripts/barba.js"></script>
       </div>
     </main>
     <Footer />
   </body>
 </html>
-
-<script>
-  // Theme stuff
-  // --- Start ---
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme) {
-    if (savedTheme === "dark") {
-      document.body.classList.add("dark");
-    }
-  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    document.body.classList.add("dark");
-  }
-
-  document.getElementById("themeToggler")?.addEventListener("click", () => {
-    const isDark = document.body.classList.toggle("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  });
-  // --- End ---
-</script>
