@@ -6,7 +6,7 @@ barba.init({
       name: 'fade-vertical-fast',
       leave({ current }) {
         // Apply fade + down transform
-        current.container.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        current.container.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
         current.container.style.opacity = 0;
         current.container.style.transform = 'translateY(20px)';
 
@@ -29,7 +29,7 @@ barba.init({
         next.container.getBoundingClientRect();
 
         // Animate up to normal
-        next.container.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        next.container.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
         next.container.style.opacity = 1;
         next.container.style.transform = 'translateY(0)';
       }
@@ -37,4 +37,4 @@ barba.init({
   ]
 });
 
-console.log('✅ Barba initialized (fade + vertical, 300ms)');
+console.log('✅ Barba initialized (fade + vertical, 200ms)');
