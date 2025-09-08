@@ -10,12 +10,12 @@ type Navlink = {
 export const links: Links = {
     nav: [
         {
-            name: "About",
+            name: "about",
             href: "/about"
         },
         {
-            name: "Contact",
-            href: "/contact"
+            name: "explore",
+            href: "/explore"
         },
     ]
 }

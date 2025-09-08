@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 ---
 
 <nav>
-  <a href="/" style="min-width: 64px;">
+  <a href="/" class="link" style="min-width: 56px; height:auto; padding: 8px;">
     <img src="/logo.svg" alt="Morax" height="32" />
   </a>
   <div class="links-wrapper">
@@ -19,7 +19,7 @@ import { Icon } from "astro-icon/components";
 
   <div>
     <div id="themeToggler" class="link">
-      <Icon name="moon" />
+      <Icon name="moon" width="1.3em" height="1.3em" />
     </div>
   </div>
 </nav>
@@ -102,7 +102,9 @@ import { Icon } from "astro-icon/components";
   setActiveLink(path, links);
 
   links.forEach((link) => {
-    link.addEventListener("click", () => {
+    link.addEventListener("click", (e) => {
+      if (link.classList.contains("active")) e.preventDefault();
+      
       const href = link.getAttribute("href");
       if (href) setActiveLink(href, links);
     });
