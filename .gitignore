@@ -19,3 +19,6 @@ pnpm-debug.log*
 
 # Cloudflare stuff
 .wrangler
+
+# Ignoring potentional drafted posts
+src/content/blog/*.md

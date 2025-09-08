@@ -1,0 +1,23 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import PostList from "@/components/PostList.astro";
+
+type BlogEntry = CollectionEntry<"blog">;
+
+const allPosts: BlogEntry[] = await getCollection("blog");
+const published = allPosts.filter((p) => !p.data.draft);
+
+const tag = Astro.url.searchParams.get("tag");
+console.log(tag);
+
+const posts = tag
+  ? published.filter((p) => p.data.tags?.some((t) => t.toLowerCase().trim() === tag.toLowerCase().trim()))
+  : published;
+---
+
+<Base>
+  <div class="card">
+    <PostList posts={posts} />
+  </div>
+</Base>

@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from "astro:content";
+type BlogEntry = CollectionEntry<"blog">;
+
+const { posts = [] }: { posts?: BlogEntry[] } = Astro.props;
+---
+
+<ul>
+  {
+    posts.map((post) => (
+      <li>
+        <a href={`/post/${post.slug}`}>{post.data.title}</a>
+        {post.data.tags?.length ? (
+          <ul>
+            {post.data.tags.map((tag) => (
+              <li>
+                <a href={`/posts/${tag.toLowerCase()}`}>{tag}</a>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </li>
+    ))
+  }
+</ul>
