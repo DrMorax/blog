@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.2",
-    "@barba/core": "^2.10.3",
     "astro": "^5.12.8"
   },
   "devDependencies": {

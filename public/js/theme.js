@@ -10,7 +10,7 @@ if (savedTheme) {
 }
 
 document.getElementById("themeToggler")?.addEventListener("click", () => {
-const isDark = document.body.classList.toggle("dark");
-localStorage.setItem("theme", isDark ? "dark" : "light");
+    const isDark = document.body.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
 });
 // --- End ---
