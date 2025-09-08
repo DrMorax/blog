@@ -27,14 +27,13 @@ import { Icon } from "astro-icon/components";
 <style>
   nav {
     background-color: var(--card-background-color);
-    max-width: calc(var(--max-page-width) - 2rem);
     margin-inline: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1rem;
-    border-bottom-right-radius: 6px;
-    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: var(--border-rounded);
+    border-bottom-left-radius: var(--border-rounded);
     height: 4.5rem;
     padding: 0 1rem;
   }
@@ -54,8 +53,12 @@ import { Icon } from "astro-icon/components";
     padding: 0.75rem 1rem;
     user-select: none;
     height: 100%;
-    border-radius: 12px;
+    border-radius: var(--border-rounded);
     transition: all 0.1s ease-in;
+  }
+
+  .link.active {
+    color: var(--primary-color);
   }
 
   .link svg {
@@ -72,3 +75,37 @@ import { Icon } from "astro-icon/components";
     background-color: var(--accent-color);
   }
 </style>
+
+<script>
+  // Active link highlighting
+  // --- Start---
+  const path = stripSlash(window.location.pathname);
+  const links = document.querySelectorAll<HTMLAnchorElement>(".link");
+
+  function stripSlash(path: string) {
+    if (!path) return "";
+    return path !== "/" && path.endsWith("/") ? path.slice(0, -1) : path;
+  }
+
+  function setActiveLink(activePath: string, links: NodeListOf<Element>) {
+    const normalized = stripSlash(activePath);
+    links.forEach((link) => {
+      const href = stripSlash(link.getAttribute("href") || "");
+      if (href === normalized) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  }
+
+  setActiveLink(path, links);
+
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      const href = link.getAttribute("href");
+      if (href) setActiveLink(href, links);
+    });
+  });
+  // --- End ---
+</script>

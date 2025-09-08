@@ -1,5 +1,7 @@
 import barba from "/js/barba.mjs"
 
+// View transition stuff 
+// --- Start ---
 barba.init({
   transitions: [
     {
@@ -36,5 +38,4 @@ barba.init({
     }
   ]
 });
-
-console.log('✅ Barba initialized (fade + vertical, 200ms)');
+// --- End ---

@@ -1,4 +1,3 @@
-html,
 body {
     font-family: sans-serif;
     margin: 0;
@@ -8,15 +7,12 @@ body {
     background-color: var(--background-color);
     display: flex;
     flex-direction: column;
+    max-width: var(--max-page-width);
+    margin-inline: auto;
 }
 
 main {
     flex-grow: 1;
-}
-
-#root {
-    max-width: var(--max-page-width);
-    margin-inline: auto;
 }
 
 #root[data-barba="container"] {
@@ -36,6 +32,7 @@ main {
     --muted-background-color: #7f7f7f;
 
     --max-page-width: 60rem;
+    --border-rounded: 12px;
 }
 
 :root .dark {
@@ -57,7 +54,7 @@ main {
 
 .card {
     background-color: var(--card-background-color);
-    border-radius: 6px;
+    border-radius: var(--border-rounded);
     padding: 1rem;
 }
 

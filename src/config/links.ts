@@ -10,10 +10,6 @@ type Navlink = {
 export const links: Links = {
     nav: [
         {
-            name: "Home",
-            href: "/"
-        },
-        {
             name: "About",
             href: "/about"
         },

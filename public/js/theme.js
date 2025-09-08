@@ -1,3 +1,5 @@
+// Theme stuff 
+// --- Start ---
 const savedTheme = localStorage.getItem("theme");
 if (savedTheme) {
     if (savedTheme === "dark") {
@@ -11,3 +13,4 @@ document.getElementById("themeToggler")?.addEventListener("click", () => {
 const isDark = document.body.classList.toggle("dark");
 localStorage.setItem("theme", isDark ? "dark" : "light");
 });
+// --- End ---
