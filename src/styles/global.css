@@ -20,12 +20,13 @@ main {
 }
 
 :root {
+    /* default light theme variables (system light users will see this) */
     --color: #191919;
     --primary-color: #e3769b;
     --accent-color: #fcd1dc;
     --secondary-color: #a8506f;
-    --muted-color: #eaeaea;
-    
+    --muted-color: #919191;
+
     --background-color: #f5ecee;
     --card-background-color: #ffffff;
     --secondary-background-color: #fee8ee;
@@ -35,12 +36,42 @@ main {
     --border-rounded: 12px;
 }
 
-:root .dark {
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* dark theme variables (system dark users will see this) */
+        --color: #e9e8e8;
+        --primary-color: #f486aa;
+        --accent-color: #6a3446;
+        --secondary-color: #d0cacc;
+        --muted-color: #bcbcbc;
+
+        --background-color: #120b0d;
+        --card-background-color: #231a1d;
+        --secondary-background-color: #452e35;
+        --muted-background-color: #150d0f;
+    }
+}
+
+/* Explicit overrides (win over both :root and @media) */
+html.light {
+    --color: #191919;
+    --primary-color: #e3769b;
+    --accent-color: #fcd1dc;
+    --secondary-color: #a8506f;
+    --muted-color: #919191;
+
+    --background-color: #f5ecee;
+    --card-background-color: #ffffff;
+    --secondary-background-color: #fee8ee;
+    --muted-background-color: #7f7f7f;
+}
+
+html.dark {
     --color: #e9e8e8;
     --primary-color: #f486aa;
     --accent-color: #6a3446;
     --secondary-color: #d0cacc;
-    --muted-color: #eaeaea;
+    --muted-color: #bcbcbc;
 
     --background-color: #120b0d;
     --card-background-color: #231a1d;
@@ -58,6 +89,30 @@ main {
     padding: 1rem;
 }
 
-.card h1 {
-    margin: 3px 0;
+/* Reusable styles */
+.ghost {
+    color: var(--color);
+    font-weight: bold;
+    transition: all 0.1s ease-in;
+    border-radius: var(--border-rounded);
+    user-select: none;
+    text-decoration: none;
+}
+
+.ghost.active {
+    color: var(--primary-color);
+}
+
+.ghost svg {
+    border-radius: 50%;
+}
+
+.ghost:hover {
+    background-color: var(--secondary-background-color);
+    color: var(--primary-color);
+}
+
+.btn:active {
+    scale: 0.95;
+    background-color: var(--accent-color);
 }

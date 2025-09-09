@@ -5,21 +5,64 @@ type BlogEntry = CollectionEntry<"blog">;
 const { posts = [] }: { posts?: BlogEntry[] } = Astro.props;
 ---
 
-<ul>
+<ul class="posts card">
   {
     posts.map((post) => (
-      <li>
-        <a href={`/post/${post.slug}`}>{post.data.title}</a>
-        {post.data.tags?.length ? (
-          <ul>
-            {post.data.tags.map((tag) => (
-              <li>
-                <a href={`/posts/${tag.toLowerCase()}`}>{tag}</a>
-              </li>
-            ))}
-          </ul>
-        ) : null}
+      <li class="post">
+        <a class="ghost" href={`/post/${post.slug}`}>
+          <div class="title">{post.data.title}</div>
+          {post.data.tags?.length ? (
+            <ul class="tags">
+              {post.data.tags.map((tag) => (
+                <li class="tag">#{tag}</li>
+              ))}
+            </ul>
+          ) : null}
+        </a>
       </li>
     ))
   }
 </ul>
+
+<style is:inline>
+  .posts {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1rem;
+    gap: 2px;
+    width: calc(var(--max-page-width) - 2rem);
+    padding: 1rem;
+  }
+
+  .post {
+    display: flex;
+    flex-direction: row;
+    padding: 1px 0.5rem;
+  }
+
+  .post a {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .post.title {
+    margin-right: auto;
+  }
+
+  .tags {
+    display: inline;
+    list-style: none;
+    font-weight: 400;
+    color: var(--muted-color);
+  }
+
+  .tag {
+    display: inline;
+    margin-inline: 6px;
+  }
+</style>
