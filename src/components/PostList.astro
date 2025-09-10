@@ -11,13 +11,15 @@ const { posts = [] }: { posts?: BlogEntry[] } = Astro.props;
       <li class="post">
         <a class="ghost" href={`/post/${post.slug}`}>
           <div class="title">{post.data.title}</div>
-          {post.data.tags?.length ? (
             <ul class="tags">
-              {post.data.tags.map((tag) => (
-                <li class="tag">#{tag}</li>
-              ))}
+              {post.data.tags.map((tag, i) => {
+                let denom;
+                (i+1) < post.data.tags?.length ? denom = "/": denom = "";
+                return (
+                  <li class="tag"> #{tag+ " " + denom}</li>
+                )
+              })}
             </ul>
-          ) : null}
         </a>
       </li>
     ))
@@ -32,7 +34,7 @@ const { posts = [] }: { posts?: BlogEntry[] } = Astro.props;
     padding: 0;
     margin-top: 1rem;
     gap: 2px;
-    width: calc(var(--max-page-width) - 2rem);
+    max-width: calc(var(--max-page-width) - 2rem);
     padding: 1rem;
   }
 
@@ -63,6 +65,5 @@ const { posts = [] }: { posts?: BlogEntry[] } = Astro.props;
 
   .tag {
     display: inline;
-    margin-inline: 6px;
   }
 </style>

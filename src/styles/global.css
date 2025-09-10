@@ -103,6 +103,11 @@ html.dark {
     color: var(--primary-color);
 }
 
+.ghost.static {
+    background-color: var(--secondary-background-color);
+    color: var(--primary-color);
+}
+
 .ghost svg {
     border-radius: 50%;
 }
