@@ -1,13 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import icon from 'astro-icon';
 import path from 'path';
 
-import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
     site: "https://morax.dev",
+    integrations: [sitemap(), icon()],
     server: {
         port: 3000,
     },
@@ -18,8 +19,4 @@ export default defineConfig({
             },
         },
     },
-    integrations: [sitemap(), icon()],
-    prefetch: {
-        defaultStrategy: 'viewport',
-    }
 });
