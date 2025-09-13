@@ -49,6 +49,9 @@ const { posts = [] }: { posts?: BlogEntry[] } = Astro.props;
 
   .tags {
     display: inline;
+    @media (max-width: 48rem) {
+      display: none;
+    }
     list-style: none;
     font-weight: 400;
     color: var(--muted-color);

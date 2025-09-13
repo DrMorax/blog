@@ -11,6 +11,12 @@ body {
     margin-inline: auto;
 }
 
+@media (max-width: 76rem) {
+    body {
+        width: calc(100vw - 2rem);
+    }
+}
+
 main {
     flex-grow: 1;
 }
@@ -32,7 +38,7 @@ main {
     --secondary-background-color: #fee8ee;
     --muted-background-color: #7f7f7f;
 
-    --max-page-width: 60rem;
+    --max-page-width: 72rem;
     --border-rounded: 12px;
 }
 
@@ -93,7 +99,7 @@ html.dark {
 .ghost {
     color: var(--color);
     font-weight: bold;
-    transition: all 0.1s ease-in;
+    transition: all 0.1s ease-out;
     border-radius: var(--border-rounded);
     user-select: none;
     text-decoration: none;
