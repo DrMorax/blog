@@ -2,6 +2,9 @@ body {
     font-family: sans-serif;
     margin: 0;
     width: 100vw;
+    @media (max-width: 76rem) {
+        width: calc(100vw - 1rem);
+    };
     height: 100vh;
     color: var(--color);
     background-color: var(--background-color);
@@ -9,12 +12,6 @@ body {
     flex-direction: column;
     max-width: var(--max-page-width);
     margin-inline: auto;
-}
-
-@media (max-width: 76rem) {
-    body {
-        width: calc(100vw - 2rem);
-    }
 }
 
 main {
