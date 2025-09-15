@@ -81,17 +81,12 @@ html.dark {
     --secondary-background-color: #452e35;
     --muted-background-color: #150d0f;
 }
+.light-only, .dark-only {
+    display: none;
+}
 
 html.light .light-only {
     display: block;
-}
-
-html.light .dark-only {
-    display: none;
-}
-
-html.dark .light-only {
-    display: none;
 }
 
 html.dark .dark-only {
