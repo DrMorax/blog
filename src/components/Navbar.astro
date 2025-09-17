@@ -3,13 +3,13 @@ import { links } from "@/config/links";
 import { Icon } from "astro-icon/components";
 ---
 
-<nav>
+<nav class="card">
   <div id="menuToggler" class="menu-toggle link">
     <div class="menu-rectangle"></div>
     <div class="menu-rectangle"></div>
     <div class="menu-rectangle"></div>
   </div>
-  <a href="/" class="link" style="min-width: 56px; height:auto; padding: 8px;">
+  <a href="/" class="logo link">
     <img src="/logo.svg" alt="Morax" height="32" />
   </a>
   <div class="links-wrapper">
@@ -43,23 +43,26 @@ import { Icon } from "astro-icon/components";
 
 <style>
   nav {
-    background-color: var(--card-background-color);
     margin-inline: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
-    border-bottom-right-radius: var(--border-rounded);
-    border-bottom-left-radius: var(--border-rounded);
+    margin: .5rem 0;
     height: 4.5rem;
     padding: 0 1rem;
+  }
+
+  .link.logo {
+    min-width: 56px;
+    height: auto;
+    padding: 8px;
   }
 
   .links-wrapper {
     display: flex;
     justify-content: space-between;
     padding-right: 2.5rem;
-    gap: 0.5rem;
+    gap: .5rem;
   }
 
   .link {
@@ -69,7 +72,7 @@ import { Icon } from "astro-icon/components";
     border-radius: var(--border-rounded);
     user-select: none;
     font-size: medium;
-    padding: 0.75rem 1rem;
+    padding: .75rem 1rem;
     height: 100%;
     text-decoration: none;
   }
@@ -101,9 +104,9 @@ import { Icon } from "astro-icon/components";
     flex-direction: column;
     background: var(--card-background-color);
     padding: 1rem;
-    gap: 0.5rem;
+    gap: .5rem;
     border-radius: var(--border-rounded);
-    margin: 0 0 0.5rem;
+    margin: 0 0 .5rem;
   }
 
   .mobile-menu.open {
@@ -124,13 +127,13 @@ import { Icon } from "astro-icon/components";
       margin: 1rem 0;
       flex-direction: column;
       height: fit-content;
-      gap: 0.3rem;
+      gap: .3rem;
     }
 
     .menu-rectangle {
       display: block;
       background-color: var(--color);
-      height: 0.2rem;
+      height: .2rem;
       width: 2rem;
       border-radius: 8px;
       transition: all 0.1s ease-in;

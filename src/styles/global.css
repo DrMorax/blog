@@ -12,6 +12,7 @@ body {
     flex-direction: column;
     max-width: var(--max-page-width);
     margin-inline: auto;
+    transition: background 0.3s;
 }
 
 main {
@@ -81,6 +82,7 @@ html.dark {
     --secondary-background-color: #452e35;
     --muted-background-color: #150d0f;
 }
+
 .light-only, .dark-only {
     display: none;
 }
@@ -101,6 +103,7 @@ html.dark .dark-only {
     background-color: var(--card-background-color);
     border-radius: var(--border-rounded);
     padding: 1rem;
+    transition: background 0.3s, color 0.3s;
 }
 
 /* Reusable styles */
