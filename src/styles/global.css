@@ -131,8 +131,6 @@ html.dark .dark-only {
     left: 0;
     width: 100%;
     height: 100%;
-    /* backdrop-filter: blur(5px); */
-    pointer-events: none;
     transition: opacity 150ms, background 150ms;
     z-index: 5;
 }
@@ -145,7 +143,7 @@ html.dark .dark-only {
 
 .overlay.hidden {
     opacity: 0;
-    transform: translateY(-20px);
+    pointer-events: none;
 }
 
 .ghost {
