@@ -137,7 +137,7 @@ html.dark .dark-only {
 
 .overlay.show {
     opacity: 1;
-    background: rgba(76, 76, 76, 0.5);
+    background: rgba(0, 0, 0, 0.4);
     pointer-events: auto;
 }
 
