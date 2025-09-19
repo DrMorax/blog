@@ -31,7 +31,7 @@ import { Icon } from "astro-icon/components";
 </nav>
 
 <!-- Floating mobile menu -->
-<div class="mobile-menu">
+<div class="mobile-menu card fade-slide-hidden">
   {
     links.nav.map((link) => (
       <a class="link" href={link.href}>
@@ -100,17 +100,20 @@ import { Icon } from "astro-icon/components";
   }
 
   .mobile-menu {
-    display: none;
+    display: flex;
+    position: absolute;
+    right: .5rem;
     flex-direction: column;
-    background: var(--card-background-color);
-    padding: 1rem;
-    gap: .5rem;
-    border-radius: var(--border-rounded);
     margin: 0 0 .5rem;
+    width: 150px;
+    background-color: var(--background-color);
+    border: solid var(--muted-color) 1px; 
+    z-index: 2;
   }
 
-  .mobile-menu.open {
-    display: flex;
+  .mobile-menu a {
+    border-radius: calc(var(--border-rounded) - .5rem);
+    padding: 1rem;
   }
 
   @media (max-width: 56rem) {
@@ -124,7 +127,7 @@ import { Icon } from "astro-icon/components";
 
     .menu-toggle {
       display: flex;
-      margin: 1rem 0;
+      margin: .5rem 0;
       flex-direction: column;
       height: fit-content;
       gap: .3rem;
@@ -144,11 +147,6 @@ import { Icon } from "astro-icon/components";
         background-color: var(--primary-color);
       }
     }
-
-    .mobile-menu {
-      display: none;
-    }
-  }
 </style>
 
 <script>
@@ -192,11 +190,11 @@ import { Icon } from "astro-icon/components";
   const mobileMenu = document.querySelector(".mobile-menu");
 
   if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener("click", () => mobileMenu.classList.toggle("open"));
+    menuToggle.addEventListener("click", () => mobileMenu.classList.toggle("fade-slide-show"));
 
     mobileMenu
       .querySelectorAll("a")
-      .forEach((a) => a.addEventListener("click", () => mobileMenu.classList.remove("open")));
+      .forEach((a) => a.addEventListener("click", () => mobileMenu.classList.remove("fade-slide-show")));
   } else {
     console.warn("menuToggler or .mobile-menu missing", { menuToggle, mobileMenu });
   }

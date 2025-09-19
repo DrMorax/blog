@@ -1,11 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 body {
-    font-family: sans-serif;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
     margin: 0;
     width: 100vw;
     @media (max-width: 76rem) {
         width: calc(100vw - 1rem);
-    };
-    height: 100vh;
+    }
+    min-height: 100vh;
     color: var(--color);
     background-color: var(--background-color);
     display: flex;
@@ -37,7 +40,7 @@ main {
     --muted-background-color: #7f7f7f;
 
     --max-page-width: 72rem;
-    --border-rounded: 12px;
+    --border-rounded: 1rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -83,7 +86,8 @@ html.dark {
     --muted-background-color: #150d0f;
 }
 
-.light-only, .dark-only {
+.light-only,
+.dark-only {
     display: none;
 }
 
@@ -102,11 +106,25 @@ html.dark .dark-only {
 .card {
     background-color: var(--card-background-color);
     border-radius: var(--border-rounded);
-    padding: 1rem;
+    padding: 0.75rem;
     transition: background 0.3s, color 0.3s;
 }
 
 /* Reusable styles */
+.fade-slide-hidden {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 200ms, transform 200ms;
+}
+
+.fade-slide-show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
 .ghost {
     color: var(--color);
     font-weight: bold;
