@@ -30,6 +30,7 @@ import { Icon } from "astro-icon/components";
   </div>
 </nav>
 
+<div class="overlay hidden" />
 <!-- Floating mobile menu -->
 <div class="mobile-menu card fade-slide-hidden">
   {
@@ -107,8 +108,7 @@ import { Icon } from "astro-icon/components";
     margin: 0 0 .5rem;
     width: 150px;
     background-color: var(--background-color);
-    border: solid var(--muted-color) 1px; 
-    z-index: 2;
+    z-index: 10;
   }
 
   .mobile-menu a {
@@ -188,15 +188,20 @@ import { Icon } from "astro-icon/components";
   // --- Start---
   const menuToggle = document.getElementById("menuToggler");
   const mobileMenu = document.querySelector(".mobile-menu");
+  const overlay = document.querySelector('.overlay');
 
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener("click", () => mobileMenu.classList.toggle("fade-slide-show"));
+  function toggle() {
+    mobileMenu?.classList.toggle("fade-slide-show");
+    overlay?.classList.toggle('show');
+    overlay?.classList.toggle('hidden');
+  }
 
-    mobileMenu
-      .querySelectorAll("a")
-      .forEach((a) => a.addEventListener("click", () => mobileMenu.classList.remove("fade-slide-show")));
+  if (menuToggle && mobileMenu && overlay) {
+    overlay.addEventListener("click", () => toggle());
+    menuToggle.addEventListener("click", () => toggle());
+    mobileMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => toggle()));
   } else {
-    console.warn("menuToggler or .mobile-menu missing", { menuToggle, mobileMenu });
+    console.warn("menuToggler or .mobile-menu or .overlay missing", { menuToggle, mobileMenu, overlay });
   }
   // --- End ---
 </script>
