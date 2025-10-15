@@ -12,9 +12,7 @@ const { posts = [] }: { posts?: BlogEntry[] } = Astro.props;
         <a class="ghost" href={`/post/${post.slug}`}>
           <div class="title">{post.data.title}</div>
           <ul class="tags">
-            {post.data.tags.map((tag) => (
-              <li class="tag"> #{tag.at(0)?.toUpperCase() + tag.slice(1).replace("-", " ")}</li>
-            ))}
+            {post.data.tags.map((tag) => <li class="tag"> #{tag.charAt(0).toUpperCase() + tag.slice(1).replace("-", " ")}</li>)}
           </ul>
         </a>
       </li>
