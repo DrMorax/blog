@@ -39,7 +39,7 @@ main {
     --muted-background-color: #7f7f7f;
 
     --max-page-width: 72rem;
-    --border-rounded: 1rem;
+    --border-rounded: 0.7rem;
 }
 
 @media (prefers-color-scheme: dark) {
