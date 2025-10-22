@@ -9,8 +9,8 @@ import { Icon } from "astro-icon/components";
     <div class="menu-rectangle"></div>
     <div class="menu-rectangle"></div>
   </div>
-  <a href="/" class="logo link">
-    <img src="/logo.svg" alt="Morax" height="32" />
+  <a href="/" class="link logo">
+    <Icon name="logo" width="3.5rem" height="3.5rem" />
   </a>
   <div class="links-wrapper">
     {
@@ -54,9 +54,14 @@ import { Icon } from "astro-icon/components";
   }
 
   .link.logo {
-    min-width: 56px;
-    height: auto;
-    padding: 8px;
+    height: 1.8rem;
+    width: auto;
+    color: var(--primary-color)
+  }
+
+  .logo svg {
+    position: relative;
+    bottom: 50%;
   }
 
   .links-wrapper {

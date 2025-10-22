@@ -5,7 +5,7 @@ body {
     font-style: normal;
     margin: 0;
     width: 100vw;
-    @media (max-width: 76rem) {
+    @media (max-width: 80rem) {
         width: calc(100vw - 1rem);
     }
     min-height: 100vh;
@@ -26,76 +26,8 @@ main {
 }
 
 :root {
-    /* default light theme variables (system light users will see this) */
-    --color: #191919;
-    --primary-color: #e3769b;
-    --accent-color: #fcd1dc;
-    --secondary-color: #a8506f;
-    --muted-color: #919191;
-
-    --background-color: #f5ecee;
-    --card-background-color: #ffffff;
-    --secondary-background-color: #fee8ee;
-    --muted-background-color: #7f7f7f;
-
-    --max-page-width: 72rem;
+    --max-page-width: 80rem;
     --border-rounded: 0.7rem;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* dark theme variables (system dark users will see this) */
-        --color: #e9e8e8;
-        --primary-color: #f486aa;
-        --accent-color: #6a3446;
-        --secondary-color: #d0cacc;
-        --muted-color: #bcbcbc;
-
-        --background-color: #120b0d;
-        --card-background-color: #231a1d;
-        --secondary-background-color: #452e35;
-        --muted-background-color: #150d0f;
-    }
-}
-
-/* Explicit overrides (win over both :root and @media) */
-html.light {
-    --color: #191919;
-    --primary-color: #e3769b;
-    --accent-color: #fcd1dc;
-    --secondary-color: #a8506f;
-    --muted-color: #919191;
-
-    --background-color: #f5ecee;
-    --card-background-color: #ffffff;
-    --secondary-background-color: #fee8ee;
-    --muted-background-color: #7f7f7f;
-}
-
-html.dark {
-    --color: #e9e8e8;
-    --primary-color: #f486aa;
-    --accent-color: #6a3446;
-    --secondary-color: #d0cacc;
-    --muted-color: #bcbcbc;
-
-    --background-color: #120b0d;
-    --card-background-color: #231a1d;
-    --secondary-background-color: #452e35;
-    --muted-background-color: #150d0f;
-}
-
-.light-only,
-.dark-only {
-    display: none;
-}
-
-html.light .light-only {
-    display: block;
-}
-
-html.dark .dark-only {
-    display: block;
 }
 
 ::selection {
@@ -114,9 +46,7 @@ html.dark .dark-only {
     opacity: 0;
     transform: translateY(-20px);
     pointer-events: none;
-    transition:
-        opacity 150ms,
-        transform 150ms;
+    transition: opacity 150ms, transform 150ms;
 }
 
 .fade-slide-show {
@@ -131,9 +61,7 @@ html.dark .dark-only {
     left: 0;
     width: 100%;
     height: 100%;
-    transition:
-        opacity 150ms,
-        background 150ms;
+    transition: opacity 150ms, background 150ms;
     z-index: 5;
 }
 

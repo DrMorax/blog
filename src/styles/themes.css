@@ -1,0 +1,117 @@
+:root {
+    /* Element palettes */
+    --anemo-primary: #1ae4b2;
+    --anemo-secondary: #53c1bb30;
+    --anemo-accent: #53c1bb1a;
+
+    --geo-primary: #ffc85b;
+    --geo-secondary: #ffc85b30;
+    --geo-accent: #ffc85b1a;
+
+    --electro-primary: #ee34ff;
+    --electro-secondary: #ee34ff30;
+    --electro-accent: #ee34ff1a;
+
+    --dendro-primary: #27ed27;
+    --dendro-secondary: #27ed2730;
+    --dendro-accent: #27ed271a;
+
+    --hydro-primary: #0c8af9;
+    --hydro-secondary: #0c8af930;
+    --hydro-accent: #0c8af91a;
+
+    --pyro-primary: #f47d2f;
+    --pyro-secondary: #f47d2f30;
+    --pyro-accent: #f47d2f1a;
+
+    --cryo-primary: #29e1ee;
+    --cryo-secondary: #00eeff30;
+    --cryo-accent: #00eeff1a;
+
+    /* Default: light theme */
+    --background-color: #f5f5f5;
+    --card-background-color: #ffffff;
+    --secondary-background-color: #e0e0e0;
+    --muted-color: #919191;
+    --muted-background-color: #7f7f7f;
+    --color: #191919;
+}
+
+/* Light theme override */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #0d0d0d;
+        --card-background-color: #1a1a1a;
+        --secondary-background-color: #262626;
+        --muted-color: #bcbcbc;
+        --muted-background-color: #444444;
+        --color: #f5f5f5;
+    }
+}
+
+html.light {
+    --background-color: #f5f5f5;
+    --card-background-color: #ffffff;
+    --secondary-background-color: #e0e0e0;
+    --muted-color: #919191;
+    --muted-background-color: #7f7f7f;
+    --color: #191919;
+}
+
+html.dark {
+    --background-color: #0d0d0d;
+    --card-background-color: #1a1a1a;
+    --secondary-background-color: #262626;
+    --muted-color: #bcbcbc;
+    --muted-background-color: #444444;
+    --color: #f5f5f5;
+}
+
+/* Palettes */
+html.anemo {
+    --primary-color: var(--anemo-primary);
+    --secondary-background-color: var(--anemo-secondary);
+    --accent-color: var(--anemo-accent);
+}
+html.geo {
+    --primary-color: var(--geo-primary);
+    --secondary-background-color: var(--geo-secondary);
+    --accent-color: var(--geo-accent);
+}
+html.electro {
+    --primary-color: var(--electro-primary);
+    --secondary-background-color: var(--electro-secondary);
+    --accent-color: var(--electro-accent);
+}
+html.dendro {
+    --primary-color: var(--dendro-primary);
+    --secondary-background-color: var(--dendro-secondary);
+    --accent-color: var(--dendro-accent);
+}
+html.hydro {
+    --primary-color: var(--hydro-primary);
+    --secondary-background-color: var(--hydro-secondary);
+    --accent-color: var(--hydro-accent);
+}
+html.pyro {
+    --primary-color: var(--pyro-primary);
+    --secondary-background-color: var(--pyro-secondary);
+    --accent-color: var(--pyro-accent);
+}
+html.cryo {
+    --primary-color: var(--cryo-primary);
+    --secondary-background-color: var(--cryo-secondary);
+    --accent-color: var(--cryo-accent);
+}
+
+/* Light/dark visibility helpers */
+.light-only,
+.dark-only {
+    display: none;
+}
+html.light .light-only {
+    display: block;
+}
+html.dark .dark-only {
+    display: block;
+}
