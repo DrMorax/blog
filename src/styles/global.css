@@ -31,7 +31,7 @@ main {
 }
 
 ::selection {
-    background: var(--accent-color);
+    background: var(--secondary-background-color);
 }
 
 .card {
