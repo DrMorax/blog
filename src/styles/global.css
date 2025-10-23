@@ -5,9 +5,6 @@ body {
     font-style: normal;
     margin: 0;
     width: 100vw;
-    @media (max-width: 80rem) {
-        width: calc(100vw - 1rem);
-    }
     min-height: 100vh;
     color: var(--color);
     background-color: var(--background-color);
@@ -19,6 +16,24 @@ body {
 
 main {
     flex-grow: 1;
+}
+
+main .banner {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    min-height: 35rem;
+    max-height: 65vh;
+    z-index: -1;
+    top: 2rem;
+    left: 0;
+}
+
+.banner-image {
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+    min-height: 25rem;
 }
 
 #root[data-barba="container"] {
