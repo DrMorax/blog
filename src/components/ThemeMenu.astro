@@ -6,13 +6,13 @@ import Menu from "./reusable/Menu.astro";
 <Menu>
     <fragment slot="content" class="menu card">
         <ul class="palettes">
-            <li class="ghost">Anemo</li>
-            <li class="ghost">Geo</li>
-            <li class="ghost">Electro</li>
-            <li class="ghost">Dendro</li>
-            <li class="ghost">Hydro</li>
-            <li class="ghost">Pyro</li>
-            <li class="ghost">Cryo</li>
+            <li>Anemo</li>
+            <li>Geo</li>
+            <li>Electro</li>
+            <li>Dendro</li>
+            <li>Hydro</li>
+            <li>Pyro</li>
+            <li>Cryo</li>
         </ul>
         <br />
         <div>
@@ -59,11 +59,20 @@ import Menu from "./reusable/Menu.astro";
     }
 
     .palettes li {
-        padding-left: 0.5rem;
+        display: flex;
+        align-items: center;
+        padding: 0.7rem 0.5rem;
+        border-radius: var(--border-rounded);
+    }
+
+    .palettes li {
+        display: flex;
+        align-items: center;
     }
 
     .palettes li:hover {
         cursor: pointer;
+        background-color: var(--secondary-background-color);
     }
 
     .theme-icon {
@@ -76,3 +85,19 @@ import Menu from "./reusable/Menu.astro";
         margin-left: 0.5rem;
     }
 </style>
+
+<script>
+    document.querySelectorAll(".palettes li").forEach((li) => {
+        li.classList.add("ghost");
+        const color = `var(--${li.innerHTML.toLowerCase()}-primary)`;
+
+        const bar = document.createElement("span");
+        bar.style.display = "inline-block";
+        bar.style.width = "1.5rem";
+        bar.style.height = "1.5rem";
+        bar.style.backgroundColor = color;
+        bar.style.marginRight = "0.5rem";
+        bar.style.borderRadius = "50%";
+        li.prepend(bar);
+    });
+</script>

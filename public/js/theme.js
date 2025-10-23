@@ -39,7 +39,7 @@ const paletteClasses = [
 
 paletteItems.forEach((item) => {
   item.addEventListener("click", () => {
-    const paletteValue = item.innerHTML.toLowerCase().trim();
+    const paletteValue = item.textContent.toLowerCase().trim();
     paletteClasses.forEach((paletteClass) => {
       root.classList.remove(paletteClass);
     });
