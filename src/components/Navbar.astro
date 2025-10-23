@@ -5,7 +5,7 @@ import MobileMenu from "./MobileMenu.astro";
 import ThemeMenu from "./ThemeMenu.astro";
 ---
 
-<nav>
+<nav class="card">
     <MobileMenu />
     <a href="/" class="ghost link logo">
         <Icon name="logo" width="3.5rem" height="3.5rem" />
@@ -24,7 +24,6 @@ import ThemeMenu from "./ThemeMenu.astro";
 
 <style>
     nav {
-        background-color: var(--card-background-color);
         margin-inline: auto;
         display: flex;
         align-items: center;
@@ -32,6 +31,7 @@ import ThemeMenu from "./ThemeMenu.astro";
         margin: 0 0 0.5rem;
         height: 4.5rem;
         padding: 0 1rem;
+        border-radius: 0;
         border-end-end-radius: var(--border-rounded);
         border-end-start-radius: var(--border-rounded);
     }
