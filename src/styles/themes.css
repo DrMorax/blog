@@ -3,49 +3,98 @@
     --anemo-primary: #1ae4b2;
     --anemo-secondary: #53c1bb30;
     --anemo-accent: #53c1bb1a;
+    --anemo-background: #53c1bc09;
 
-    --geo-primary: #ffc85b;
-    --geo-secondary: #ffc85b30;
-    --geo-accent: #ffc85b1a;
+    --anemo-dark-primary: #3bec9c;
+    --anemo-dark-secondary: #3bec9c30;
+    --anemo-dark-accent: #3bec9c1a;
+    --anemo-dark-background: #000e0b;
+    --anemo-dark-card: #0c1815;
+
+    --geo-primary: #deac49;
+    --geo-secondary: #deac4930;
+    --geo-accent: #deac491a;
+    --geo-background: #ffc85b09;
+
+    --geo-dark-primary: #d4a340;
+    --geo-dark-secondary: #d4a34030;
+    --geo-dark-accent: #d4a3401a;
+    --geo-dark-background: #0c0800;
+    --geo-dark-card: #1b160d;
 
     --electro-primary: #ee34ff;
     --electro-secondary: #ee34ff30;
     --electro-accent: #ee34ff1a;
+    --electro-background: #ee34ff09;
+
+    --electro-dark-primary: #e162ed;
+    --electro-dark-secondary: #e162ed30;
+    --electro-dark-accent: #e162ed1a;
+    --electro-dark-background: #0c000d;
+    --electro-dark-card: #1a0c1c;
 
     --dendro-primary: #27ed27;
     --dendro-secondary: #27ed2730;
     --dendro-accent: #27ed271a;
+    --dendro-background: #27ed2709;
+
+    --dendro-dark-primary: #55e255;
+    --dendro-dark-secondary: #55e25530;
+    --dendro-dark-accent: #55e2551a;
+    --dendro-dark-background: #001100;
+    --dendro-dark-card: #0e1f0e;
 
     --hydro-primary: #0c8af9;
     --hydro-secondary: #0c8af930;
     --hydro-accent: #0c8af91a;
+    --hydro-background: #0c8af909;
 
-    --pyro-primary: #f47d2f;
-    --pyro-secondary: #f47d2f30;
-    --pyro-accent: #f47d2f1a;
+    --hydro-dark-primary: #3094eb;
+    --hydro-dark-secondary: #3094eb30;
+    --hydro-dark-accent: #3094eb1a;
+    --hydro-dark-background: #00070e;
+    --hydro-dark-card: #0b1117;
+
+    --pyro-primary: #ff0000;
+    --pyro-secondary: #ff000030;
+    --pyro-accent: #ff00001a;
+    --pyro-background: #ff000009;
+
+    --pyro-dark-primary: #ea2828;
+    --pyro-dark-secondary: #ea282830;
+    --pyro-dark-accent: #ea28281a;
+    --pyro-dark-background: #0f0000;
+    --pyro-dark-card: #1b0d0d;
 
     --cryo-primary: #29e1ee;
     --cryo-secondary: #00eeff30;
     --cryo-accent: #00eeff1a;
+    --cryo-background: #29e1ee09;
 
-    /* Default: light theme */
-    --background-color: #f5f5f5;
-    --card-background-color: #ffffff;
-    --secondary-background-color: #e0e0e0;
-    --muted-color: #919191;
-    --muted-background-color: #7f7f7f;
-    --color: #191919;
+    --cryo-dark-primary: #41f2ff;
+    --cryo-dark-secondary: #41f2ff30;
+    --cryo-dark-accent: #41f2ff1a;
+    --cryo-dark-background: #001516;
+    --cryo-dark-card: #0e1d1e;
+
+    /* Default: dark theme */
+    --background-color: #0d0d0d;
+    --card-background-color: #1a1a1a;
+    --secondary-background-color: #262626;
+    --muted-color: #bcbcbc;
+    --muted-background-color: #444444;
+    --color: #f5f5f5;
 }
 
 /* Light theme override */
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     :root {
-        --background-color: #0d0d0d;
-        --card-background-color: #1a1a1a;
-        --secondary-background-color: #262626;
-        --muted-color: #bcbcbc;
-        --muted-background-color: #444444;
-        --color: #f5f5f5;
+        --background-color: #f5f5f5;
+        --card-background-color: #ffffff;
+        --secondary-background-color: #e0e0e0;
+        --muted-color: #919191;
+        --muted-background-color: #7f7f7f;
+        --color: #191919;
     }
 }
 
@@ -56,8 +105,11 @@ html.light {
     --muted-color: #919191;
     --muted-background-color: #7f7f7f;
     --color: #191919;
-}
 
+    .card {
+        box-shadow: rgba(174, 174, 174, 0.1) 0px 4px 12px;
+    }
+}
 html.dark {
     --background-color: #0d0d0d;
     --card-background-color: #1a1a1a;
@@ -65,43 +117,109 @@ html.dark {
     --muted-color: #bcbcbc;
     --muted-background-color: #444444;
     --color: #f5f5f5;
+
+    .card {
+        box-shadow: rgba(40, 42, 46, 0.1) 0px 4px 12px;
+    }
 }
 
 /* Palettes */
-html.anemo {
+html.anemo.light {
     --primary-color: var(--anemo-primary);
     --secondary-background-color: var(--anemo-secondary);
     --accent-color: var(--anemo-accent);
+    --background-color: var(--anemo-background);
 }
-html.geo {
+html.anemo.dark {
+    --primary-color: var(--anemo-dark-primary);
+    --secondary-background-color: var(--anemo-dark-secondary);
+    --accent-color: var(--anemo-dark-accent);
+    --background-color: var(--anemo-dark-background);
+    --card-background-color: var(--anemo-dark-card);
+}
+
+html.geo.light {
     --primary-color: var(--geo-primary);
     --secondary-background-color: var(--geo-secondary);
     --accent-color: var(--geo-accent);
+    --background-color: var(--geo-background);
 }
-html.electro {
+html.geo.dark {
+    --primary-color: var(--geo-dark-primary);
+    --secondary-background-color: var(--geo-dark-secondary);
+    --accent-color: var(--geo-dark-accent);
+    --background-color: var(--geo-dark-background);
+    --card-background-color: var(--geo-dark-card);
+}
+
+html.electro.light {
     --primary-color: var(--electro-primary);
     --secondary-background-color: var(--electro-secondary);
     --accent-color: var(--electro-accent);
+    --background-color: var(--electro-background);
 }
-html.dendro {
+html.electro.dark {
+    --primary-color: var(--electro-dark-primary);
+    --secondary-background-color: var(--electro-dark-secondary);
+    --accent-color: var(--electro-dark-accent);
+    --background-color: var(--electro-dark-background);
+    --card-background-color: var(--electro-dark-card);
+}
+
+html.dendro.light {
     --primary-color: var(--dendro-primary);
     --secondary-background-color: var(--dendro-secondary);
     --accent-color: var(--dendro-accent);
+    --background-color: var(--dendro-background);
 }
-html.hydro {
+html.dendro.dark {
+    --primary-color: var(--dendro-dark-primary);
+    --secondary-background-color: var(--dendro-dark-secondary);
+    --accent-color: var(--dendro-dark-accent);
+    --background-color: var(--dendro-dark-background);
+    --card-background-color: var(--dendro-dark-card);
+}
+
+html.hydro.light {
     --primary-color: var(--hydro-primary);
     --secondary-background-color: var(--hydro-secondary);
     --accent-color: var(--hydro-accent);
+    --background-color: var(--hydro-background);
 }
-html.pyro {
+html.hydro.dark {
+    --primary-color: var(--hydro-dark-primary);
+    --secondary-background-color: var(--hydro-dark-secondary);
+    --accent-color: var(--hydro-dark-accent);
+    --background-color: var(--hydro-dark-background);
+    --card-background-color: var(--hydro-dark-card);
+}
+
+html.pyro.light {
     --primary-color: var(--pyro-primary);
     --secondary-background-color: var(--pyro-secondary);
     --accent-color: var(--pyro-accent);
+    --background-color: var(--pyro-background);
 }
-html.cryo {
+html.pyro.dark {
+    --primary-color: var(--pyro-dark-primary);
+    --secondary-background-color: var(--pyro-dark-secondary);
+    --accent-color: var(--pyro-dark-accent);
+    --background-color: var(--pyro-dark-background);
+    --card-background-color: var(--pyro-dark-card);
+}
+
+html.cryo.light {
     --primary-color: var(--cryo-primary);
     --secondary-background-color: var(--cryo-secondary);
     --accent-color: var(--cryo-accent);
+    --background-color: var(--cryo-background);
+}
+html.cryo.dark {
+    --primary-color: var(--cryo-dark-primary);
+    --secondary-background-color: var(--cryo-dark-secondary);
+    --accent-color: var(--cryo-dark-accent);
+    --background-color: var(--cryo-dark-background);
+    --card-background-color: var(--cryo-dark-card);
 }
 
 /* Light/dark visibility helpers */

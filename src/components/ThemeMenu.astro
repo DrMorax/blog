@@ -1,0 +1,82 @@
+---
+import { Icon } from "astro-icon/components";
+import Menu from "./reusable/Menu.astro";
+---
+
+<Menu>
+    <fragment slot="content" class="menu card">
+        <ul class="palettes">
+            <li class="ghost">Anemo</li>
+            <li class="ghost">Geo</li>
+            <li class="ghost">Electro</li>
+            <li class="ghost">Dendro</li>
+            <li class="ghost">Hydro</li>
+            <li class="ghost">Pyro</li>
+            <li class="ghost">Cryo</li>
+        </ul>
+        <br />
+        <div>
+            <div id="themeToggler">
+                <div class="dark-only">
+                    <div class="theme-icon ghost">
+                        <Icon name="moon" width="1.5em" height="1.5em" />
+                        <p>Dark</p>
+                    </div>
+                </div>
+                <div class="light-only">
+                    <div class="theme-icon ghost">
+                        <Icon name="sun" width="1.5em" height="1.5em" />
+                        <p>Light</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fragment>
+
+    <fragment slot="toggle">
+        <Icon name="palette" height="1.5em" width="1.5em" />
+    </fragment>
+</Menu>
+
+<style>
+    .menu {
+        display: flex;
+        position: absolute;
+        top: 1.125rem;
+        left: -7rem;
+        flex-direction: column;
+        width: 10rem;
+        background-color: var(--card-background-color);
+    }
+
+    .palettes {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+        font-weight: bold;
+        margin: 0;
+        padding-left: 0;
+    }
+
+    .palettes li {
+        padding-left: 0.5rem;
+    }
+
+    .palettes li:hover {
+        cursor: pointer;
+    }
+
+    .theme-icon {
+        display: flex;
+        align-items: center;
+        padding: 0 0.5rem;
+    }
+
+    .theme-icon p {
+        margin-left: 0.5rem;
+    }
+
+    @media (max-width: 80rem) {
+        left: -7rem;
+    }
+</style>

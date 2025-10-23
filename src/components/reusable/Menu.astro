@@ -1,0 +1,74 @@
+<div class="wrapper" dir="ltr">
+    <div class="menu-toggle ghost menuToggler">
+        <slot name="toggle" />
+    </div>
+
+    <div class="fade-slide-hidden" id="menuWrapper" style="z-index: 10;">
+        <slot name="content" />
+    </div>
+
+    <div class="overlay hidden"></div>
+</div>
+
+<script>
+    const menuTogglers = document.querySelectorAll<HTMLElement>(".menuToggler");
+
+    const toggleMenu = (menu: HTMLElement, overlay: HTMLElement): void => {
+        menu.classList.toggle("fade-slide-show");
+        overlay.classList.toggle("show");
+        overlay.classList.toggle("hidden");
+    };
+
+    menuTogglers.forEach((toggler: HTMLElement) => {
+        const wrapper = toggler.closest(".wrapper") as HTMLElement | null;
+
+        if (!wrapper) return;
+
+        const menu = wrapper.querySelector<HTMLElement>("#menuWrapper");
+        const overlay = wrapper.querySelector<HTMLElement>(".overlay");
+
+        if (!menu || !overlay) return;
+
+        toggler.addEventListener("click", (e: Event) => {
+            e.stopPropagation();
+            toggleMenu(menu, overlay);
+        });
+
+        overlay.addEventListener("click", () => {
+            toggleMenu(menu, overlay);
+        });
+
+        menu.querySelectorAll<HTMLElement>("a, button, .ghost").forEach(
+            (element) => {
+                element.addEventListener("click", () => {
+                    toggleMenu(menu, overlay);
+                });
+            },
+        );
+    });
+
+    document.addEventListener("click", (e: Event) => {
+        const target = e.target as Element;
+
+        document
+            .querySelectorAll<HTMLElement>("#menuWrapper")
+            .forEach((menu) => {
+                const wrapper = menu.closest(".wrapper") as HTMLElement | null;
+                if (!wrapper) return;
+
+                const toggler =
+                    wrapper.querySelector<HTMLElement>(".menuToggler");
+                const overlay = wrapper.querySelector<HTMLElement>(".overlay");
+
+                if (!toggler || !overlay) return;
+
+                if (
+                    menu.classList.contains("fade-slide-show") &&
+                    !menu.contains(target) &&
+                    !toggler.contains(target)
+                ) {
+                    toggleMenu(menu, overlay);
+                }
+            });
+    });
+</script>

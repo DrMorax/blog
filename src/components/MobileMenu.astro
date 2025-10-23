@@ -1,0 +1,75 @@
+---
+import { links } from "@/config";
+import Menu from "./reusable/Menu.astro";
+---
+
+<div class="wrapper">
+    <Menu links={links}>
+        <fragment slot="content">
+            <div class="menu card">
+                {
+                    links.nav.map((link) => (
+                        <a class="ghost link" href={link.href}>
+                            /{link.name}
+                        </a>
+                    ))
+                }
+            </div>
+        </fragment>
+
+        <fragment slot="toggle" class="menu-toggle">
+            <div class="menu-rectangle"></div>
+            <div class="menu-rectangle"></div>
+            <div class="menu-rectangle"></div>
+        </fragment>
+    </Menu>
+</div>
+
+<style>
+    .wrapper {
+        display: none;
+    }
+
+    .menu {
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        top: 1.4rem;
+        left: -1rem;
+        width: 10rem;
+        background-color: var(--card-background-color);
+    }
+
+    .menu a {
+        border-radius: calc(var(--border-rounded) - 0.3rem);
+        padding: 1rem;
+    }
+
+    @media (max-width: 56rem) {
+        .wrapper {
+            display: block;
+        }
+
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            gap: 0.3rem;
+        }
+
+        .wrapper:hover {
+            .menu-rectangle {
+                background-color: var(--primary-color);
+            }
+        }
+
+        .menu-rectangle {
+            display: block;
+            background-color: var(--color);
+            height: 0.2rem;
+            width: 2rem;
+            border-radius: 8px;
+            transition: all 0.1s ease-in;
+        }
+    }
+</style>
