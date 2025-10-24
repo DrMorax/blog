@@ -24,7 +24,11 @@ document.getElementById("themeToggler")?.addEventListener("click", () => {
 });
 
 const savedPalette = localStorage.getItem("palette");
-if (savedPalette) root.classList.add(savedPalette);
+const banner = document.getElementById("heroBanner");
+if (savedPalette) {
+  root.classList.add(savedPalette);
+  banner.src = `/banners/${savedPalette}.jpg`;
+}
 
 const paletteItems = document.querySelectorAll(".palettes li");
 const paletteClasses = [
@@ -44,7 +48,7 @@ paletteItems.forEach((item) => {
       root.classList.remove(paletteClass);
     });
     root.classList.add(paletteValue);
-    document.getElementById("heroBanner").src = `/banners/${paletteValue}.jpg`;
+    banner.src = `/banners/${paletteValue}.jpg`;
     localStorage.setItem("palette", paletteValue);
   });
 });
