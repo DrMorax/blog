@@ -28,6 +28,10 @@ const banner = document.getElementById("heroBanner");
 if (savedPalette) {
   root.classList.add(savedPalette);
   banner.src = `/banners/${savedPalette}.jpg`;
+} else {
+  // Default anemo theme
+  root.classList.add("anemo");
+  banner.src = "/banners/anemo.jpg";
 }
 
 const paletteItems = document.querySelectorAll(".palettes li");
