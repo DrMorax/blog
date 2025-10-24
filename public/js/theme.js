@@ -44,6 +44,7 @@ paletteItems.forEach((item) => {
       root.classList.remove(paletteClass);
     });
     root.classList.add(paletteValue);
+    document.getElementById("heroBanner").src = `/banners/${paletteValue}.jpg`;
     localStorage.setItem("palette", paletteValue);
   });
 });
