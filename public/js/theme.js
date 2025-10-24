@@ -22,14 +22,17 @@ document.getElementById("themeToggler")?.addEventListener("click", () => {
     localStorage.setItem("theme", "light");
   }
 });
+// --- End ---
 
+// Palette stuff
+// --- Start ---
 const savedPalette = localStorage.getItem("palette");
 const banner = document.getElementById("heroBanner");
 if (savedPalette) {
   root.classList.add(savedPalette);
   banner.src = `/banners/${savedPalette}.jpg`;
 } else {
-  // Default anemo theme
+  // Default anemo palette
   root.classList.add("anemo");
   banner.src = "/banners/anemo.jpg";
 }
