@@ -25,8 +25,9 @@ main .banner {
     min-height: 35rem;
     max-height: 65vh;
     z-index: -1;
-    top: 2rem;
+    top: 0;
     left: 0;
+    transition: height 0.3s;
 }
 
 .banner-image {
@@ -41,7 +42,7 @@ main .banner {
 }
 
 :root {
-    --max-page-width: 80rem;
+    --max-page-width: 64rem;
     --border-rounded: 0.7rem;
 }
 

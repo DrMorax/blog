@@ -43,4 +43,12 @@ barba.init({
     },
   ],
 });
+
+let transitioning = false;
+barba.hooks.before(() => {
+  if (transitioning) return;
+  window.scrollTo(0, 0);
+  transitioning = true;
+});
+barba.hooks.after(() => (transitioning = false));
 // --- End ---

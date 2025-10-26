@@ -1,23 +1,69 @@
 ---
 import Base from "@/layouts/Base.astro";
+import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+    const posts = await getCollection("blog", ({ data }) => !data.draft);
+    return posts.map((post) => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
 }
 
 const { post } = Astro.props;
 const rendered = await post.render();
+const len = post.body.split(" ").length;
+const time = Math.floor(len / 100);
 ---
 
 <Base>
-  <article class="card">
-    <h1>{post.data.title}</h1>
-    <p>{post.data.description}</p>
-    <rendered.Content />
-  </article>
+    <article class="card">
+        <div class="length-wrapper">
+            <div>
+                <Icon name="paragraph" />
+                <p>{len} words</p>
+            </div>
+            <div>
+                <Icon name="clock" />
+                <p>{time} minute(s)</p>
+            </div>
+        </div>
+        <h1 class="title">{post.data.title}</h1>
+        <div class="meta">
+            <section class="date">
+                <Icon name="calendar" />
+                <p style="font-weight: bold; margin: 0;">{post.data.date}</p>
+            </section>
+            <section class="tags">
+                <Icon name="tag" />
+                {
+                    post.data.tags.map((tag, i) => {
+                        let slash = false;
+                        if (post.data.tags.length > 1) {
+                            if (i + 1 < post.data.tags.length) {
+                                slash = true;
+                            }
+                        } else {
+                        }
+                        return (
+                            <div>
+                                <a
+                                    style="font-size: medium; padding: 0.5rem;"
+                                    class="ghost"
+                                    href={`/posts/${tag}`}
+                                >
+                                    {tag}
+                                </a>
+                                <div style="color: var(--muted-color); display: inline; user-select: none;">
+                                    {slash ? "/" : null}
+                                </div>
+                            </div>
+                        );
+                    })
+                }
+            </section>
+        </div>
+        <rendered.Content />
+    </article>
 </Base>
