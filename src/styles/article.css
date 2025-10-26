@@ -1,6 +1,6 @@
 main:has(article) {
     nav {
-        margin: 0 0 12rem !important;
+        margin: 0 0 0.5rem !important;
     }
 }
 
