@@ -28,6 +28,9 @@ main .banner {
     top: 0;
     left: 0;
     transition: height 0.3s;
+    @media (max-width: 56rem) {
+        top: 4rem;
+    }
 }
 
 .banner-image {
