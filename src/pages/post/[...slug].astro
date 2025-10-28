@@ -1,4 +1,5 @@
 ---
+import PostMeta from "@/components/reusable/PostMeta.astro";
 import Base from "@/layouts/Base.astro";
 import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
@@ -14,7 +15,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const rendered = await post.render();
 const len = post.body.split(" ").length;
-const time = Math.floor(len / 100);
+const time = Math.floor(len / 130);
 ---
 
 <Base>
@@ -30,40 +31,8 @@ const time = Math.floor(len / 100);
             </div>
         </div>
         <h1 class="title">{post.data.title}</h1>
-        <div class="meta">
-            <section class="date">
-                <Icon name="calendar" />
-                <p style="font-weight: bold; margin: 0;">{post.data.date}</p>
-            </section>
-            <section class="tags">
-                <Icon name="tag" />
-                {
-                    post.data.tags.map((tag, i) => {
-                        let slash = false;
-                        if (post.data.tags.length > 1) {
-                            if (i + 1 < post.data.tags.length) {
-                                slash = true;
-                            }
-                        } else {
-                        }
-                        return (
-                            <div>
-                                <a
-                                    style="font-size: medium; padding: 0.5rem;"
-                                    class="ghost"
-                                    href={`/posts/${tag}`}
-                                >
-                                    {tag}
-                                </a>
-                                <div style="color: var(--muted-color); display: inline; user-select: none;">
-                                    {slash ? "/" : null}
-                                </div>
-                            </div>
-                        );
-                    })
-                }
-            </section>
-        </div>
+        <PostMeta post={post} />
+
         <rendered.Content />
     </article>
 </Base>

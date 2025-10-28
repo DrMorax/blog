@@ -127,7 +127,7 @@ h1 {
 
 .ghost:hover {
     background-color: var(--secondary-background-color);
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
     cursor: pointer;
 }
 
@@ -142,6 +142,10 @@ h1 {
 
 .ghost svg {
     border-radius: 50%;
+}
+
+.ghost.link.heading {
+    padding: 1rem 0;
 }
 
 .btn:active {
