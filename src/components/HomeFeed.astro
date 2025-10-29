@@ -85,21 +85,22 @@ const processedPosts: ProcessedPost[] = await Promise.all(
         flex-direction: column;
         justify-content: space-between;
         height: 12rem;
+        padding: 0.75rem;
     }
 
     .wrapper .post img {
         position: absolute;
         top: 0;
         right: 0;
-        height: 13.5rem;
+        height: 15rem;
         border-radius: var(--border-rounded);
-        clip-path: polygon(2% 0%, 100% 0%, 100% 100%, 12% 100%);
+        border-top-left-radius: 0;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 12% 100%);
         filter: grayscale(1);
         transition: filter 0.2s;
     }
 
     .wrapper .post img:hover {
-        background-color: var(--sedondary-background-color);
         filter: grayscale(0);
     }
 

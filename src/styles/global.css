@@ -14,10 +14,6 @@ body {
     margin-inline: auto;
 }
 
-main {
-    flex-grow: 1;
-}
-
 main .banner {
     position: absolute;
     overflow: hidden;
@@ -52,7 +48,7 @@ main .banner {
 
 :root {
     --max-page-width: 64rem;
-    --border-rounded: 0.7rem;
+    --border-rounded: 1rem;
 }
 
 ::selection {
