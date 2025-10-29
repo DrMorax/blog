@@ -30,7 +30,9 @@ const time = Math.floor(len / 130);
                 <p>{time} minute(s)</p>
             </div>
         </div>
-        <h1 class="title">{post.data.title}</h1>
+        <div class="title">
+            <h1>{post.data.title}</h1>
+        </div>
         <PostMeta post={post} />
 
         <rendered.Content />

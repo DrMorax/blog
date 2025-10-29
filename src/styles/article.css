@@ -5,6 +5,25 @@ article {
     }
 }
 
+article .title {
+    position: relative;
+}
+
+@media (min-width: 64rem) {
+    article h1::before {
+        content: ".";
+        position: absolute;
+        padding: 0;
+        left: -1rem;
+        top: 0.6rem;
+        font-size: 1rem;
+        font-weight: 100;
+        border-radius: 1rem;
+        background-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+}
+
 article .length-wrapper {
     display: flex;
     gap: 0.5rem;
