@@ -24,32 +24,6 @@ article .title {
     }
 }
 
-article .length-wrapper {
-    display: flex;
-    gap: 0.5rem;
-    color: muted;
-    margin: 0.5rem 0;
-}
-
-article .length-wrapper div {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-article .length-wrapper p {
-    color: var(--muted-color);
-    display: inline;
-    margin: 0;
-}
-
-article .length-wrapper svg {
-    color: white;
-    background-color: var(--muted-background-color);
-    padding: 0.2rem;
-    border-radius: 0.25rem;
-}
-
 article img {
     width: 100% !important;
     height: auto;
