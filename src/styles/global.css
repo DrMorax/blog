@@ -36,10 +36,12 @@ main .banner {
     min-height: 25rem;
 }
 
-.hydro .banner-image,
-.cryo .banner-image,
-.anemo .banner-image {
-    object-position: right;
+.hydro,
+.cryo,
+.anemo {
+    .banner-image {
+        object-position: right;
+    }
 }
 
 #root[data-barba="container"] {
