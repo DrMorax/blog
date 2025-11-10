@@ -50,5 +50,14 @@ barba.hooks.before(() => {
   window.scrollTo(0, 0);
   transitioning = true;
 });
-barba.hooks.after(() => (transitioning = false));
+barba.hooks.after(() => {
+  transitioning = false;
+
+  const img = document.querySelector("article img");
+  if (img) {
+    const offset = 200;
+    const top = window.scrollY + img.getBoundingClientRect().top - offset;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+});
 // --- End ---

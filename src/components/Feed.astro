@@ -1,0 +1,152 @@
+---
+import type { CollectionEntry } from "astro:content";
+import PostMeta from "@/components/reusable/PostMeta.astro";
+
+type BlogEntry = CollectionEntry<"blog">;
+
+interface Props {
+    posts: BlogEntry[];
+}
+
+const { posts } = Astro.props as Props;
+let publishedPosts = posts.filter((p) => p.data.draft !== true);
+
+const processedPosts = publishedPosts.map((post) => {
+    const len = post.body.split(/\s+/).length;
+    const time = Math.floor(len / 130);
+    return { ...post, wordCount: len, readingTime: time > 0 ? time : 1 };
+});
+---
+
+<div class="wrapper">
+    {
+        processedPosts.map((post) => (
+            <div class="card post">
+                <div class="body">
+                    <div>
+                        <a
+                            class="ghost link heading"
+                            href={`/post/${post.slug}`}
+                        >
+                            <h1>{post.data.title}</h1>
+                        </a>
+                        <PostMeta post={post} />
+                    </div>
+                    <div>
+                        <p>{post.data.description}</p>
+                        <p style="color: var(--muted-color);">
+                            {post.wordCount} words | {post.readingTime}{" "}
+                            minute(s)
+                        </p>
+                    </div>
+                </div>
+                <a href={`/post/${post.slug}`}>
+                    <div class="cover">
+                        <img
+                            src={`/blog/${post.slug}/cover.jpg`}
+                            alt={`Cover image of ${post.slug}`}
+                        />
+                    </div>
+                </a>
+            </div>
+        ))
+    }
+</div>
+
+<style is:inline>
+    @media (min-width: 64rem) {
+        .wrapper .post .body h1::before {
+            content: ".";
+            position: absolute;
+            padding: 0;
+            left: -0.75rem;
+            top: 0.6rem;
+            font-size: 1rem;
+            font-weight: 100;
+            border-radius: 1rem;
+            background-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .wrapper .post .body {
+            padding: 1rem 1.75rem;
+        }
+
+        .wrapper .post img {
+            height: 14.5rem;
+        }
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .wrapper .post {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .wrapper .post .body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 12rem;
+        padding: 0.5rem;
+    }
+
+    .heading {
+        position: relative;
+    }
+
+    .wrapper .post .cover {
+        position: relative;
+        right: 26.8rem;
+    }
+
+    .wrapper .post img {
+        position: absolute;
+        top: -0.75rem;
+        left: 1.75rem;
+        height: 14.5rem;
+        border-radius: var(--border-rounded);
+        border-top-left-radius: 0;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 12% 100%);
+        filter: grayscale(1);
+        transition: filter 0.2s;
+    }
+
+    .wrapper .post img:hover {
+        filter: grayscale(0);
+    }
+
+    @media (max-width: 56rem) {
+        .wrapper .post {
+            flex-direction: column-reverse;
+            width: 80vw;
+            @media (max-width: 32rem) {
+                width: auto;
+            }
+            margin-inline: auto;
+            border-radius: var(--border-rounded);
+            overflow: hidden;
+        }
+
+        .wrapper .post .body {
+            height: auto;
+            padding-bottom: 0;
+        }
+
+        .wrapper .post img {
+            position: relative;
+            bottom: -1rem;
+            left: 26rem;
+            width: calc(100% + 1.55rem);
+            height: auto;
+            clip-path: none;
+            filter: none;
+        }
+    }
+</style>
