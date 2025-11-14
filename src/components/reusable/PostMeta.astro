@@ -11,7 +11,7 @@ const { post } = Astro.props;
             <Calendar />
         </div>
         <p
-            style="font-weight: bold; font-size: small; margin: 0; color: var(--muted-color)"
+            style="font-weight: bold; font-size: small; margin: 0; padding: 0 0.6rem; color: var(--muted-color)"
         >
             {post.data.date}
         </p>
@@ -32,7 +32,7 @@ const { post } = Astro.props;
                         >
                             {tag}
                         </a>
-                        <div style="display: inline; user-select: none;">
+                        <div style="display: inline; user-select: none; margin: 0;">
                             {slash ? "/" : null}
                         </div>
                     </Fragment>
