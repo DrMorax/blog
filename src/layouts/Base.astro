@@ -5,6 +5,18 @@ import Footer from "@/components/Footer.astro";
 import "@/styles/global.css";
 import "@/styles/themes.css";
 import "@/styles/article.css";
+
+const {
+    title = "Morax",
+    description = "A personal stash of tech notes, security experiments, and things I don't want to forget.",
+    image,
+} = Astro.props;
+
+const defaultImage = "/fallback-cover.jpg";
+
+const activeImage = image || defaultImage;
+
+const socialImageURL = new URL(activeImage, Astro.site || "https://morax.dev");
 ---
 
 <!doctype html>
@@ -20,12 +32,17 @@ import "@/styles/article.css";
             href="/rss.xml"
         />
         <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={socialImageURL} />
+        <meta property="og:type" content="article" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={socialImageURL} />
+
         <link rel="sitemap" href="/sitemap-index.xml" />
-        <title>Morax</title>
-        <meta
-            name="description"
-            content="A personal stash of tech notes, security experiments, and things I don't want to forget."
-        />
         <!-- Theme and view transition stuff -->
         <script is:inline type="module" src="/js/barba.js"></script>
     </head>
