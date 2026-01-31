@@ -3,7 +3,75 @@ import Base from "@/layouts/Base.astro";
 ---
 
 <Base>
-  <div class="card">
-    <h1>This is the About page</h1>
-  </div>
+    <div class="card">
+        <h1>
+            Hi, I'm <em>Morax</em> :3
+        </h1>
+
+        <p>
+            a 22 y.o. college student majoring in Cybersecurity; born and
+            residing in Iraq.
+            <br />
+
+            I'm just your average web dev who is comfortable building things
+            with Javascript/Typescript & Golang, but I don't plan to remain as
+            such.
+            <br />
+
+            I've been dabbling with C and systems programming recently. I'm
+            starting to realize that programming <strong>IS</strong> fun, and that
+            I'm simply exposed to the boring side of it.
+        </p>
+
+        <h2>I welcome you to my humble abode</h2>
+        <p>
+            I hope you like the theme switchers, it was a pain in the ass to
+            make them look decent enough for my liking.
+            <br /> Currently, I have nothing here except for these two movie reviews:
+            <ul>
+                <li>
+                    <a href="/post/hackers-1995">Hackers (1995)</a>
+                </li>
+                • <li>
+                    <a href="/post/chainsaw-man-reze-arc"
+                        >Chainsaw man: Reze arc</a
+                    >
+                </li>
+            </ul>
+        </p>
+
+        <p>
+            When I have the time, I plan to have more posts that consist of ~80%
+            tech post and the other 20% could be whatever.
+        </p>
+        <p>Anyway, enjoy your visit :3</p>
+    </div>
+
+    <style is:raw>
+        h1,
+        h2 {
+            margin: 0 0 0.3rem;
+        }
+        p {
+            font-size: 20px;
+            margin: 0 0 1.2rem;
+            line-height: 1.6;
+        }
+
+        ul {
+            padding: 0;
+        }
+        ul li {
+            display: inline;
+        }
+        ul li a {
+            color: var(--primary-color);
+            transition: all 0.1s ease-out;
+            text-decoration-style: dashed;
+            padding-block: 4px;
+        }
+        ul li a:hover {
+            background-color: var(--secondary-background-color);
+        }
+    </style>
 </Base>
