@@ -62,12 +62,17 @@ import Menu from "./reusable/Menu.astro";
         display: flex;
         align-items: center;
         padding: 0.7rem 0.5rem;
+        user-select: none;
         border-radius: calc(var(--border-rounded) - 0.4rem);
+        transition: all 0.15s;
     }
 
     .palettes li:hover {
         cursor: pointer;
-        background-color: var(--secondary-background-color);
+    }
+
+    .palettes li:active {
+        scale: 0.95;
     }
 
     .theme-icon {
@@ -79,17 +84,34 @@ import Menu from "./reusable/Menu.astro";
 </style>
 
 <script>
-    document.querySelectorAll(".palettes li").forEach((li) => {
-        li.classList.add("ghost");
+    document.querySelectorAll<HTMLLIElement>(".palettes li").forEach((li) => {
         const color = `var(--${li.innerHTML.toLowerCase()}-primary)`;
+        const background = `var(--${li.innerHTML.toLowerCase()}-secondary)`;
+        const accent = `var(--${li.innerHTML.toLowerCase()}-accent)`;
 
         const bar = document.createElement("span");
         bar.style.display = "inline-block";
-        bar.style.width = "1.5rem";
+        bar.style.width = "0.75rem";
         bar.style.height = "1.5rem";
         bar.style.backgroundColor = color;
         bar.style.marginRight = "0.5rem";
-        bar.style.borderRadius = "50%";
         li.prepend(bar);
+
+        li.addEventListener(
+            "mouseenter",
+            () => (li.style.backgroundColor = background),
+        );
+        li.addEventListener(
+            "mouseleave",
+            () => (li.style.backgroundColor = ""),
+        );
+        li.addEventListener(
+            "mousedown",
+            () => (li.style.backgroundColor = accent),
+        );
+        li.addEventListener(
+            "mouseup",
+            () => (li.style.backgroundColor = background),
+        );
     });
 </script>
