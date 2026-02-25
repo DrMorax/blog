@@ -18,11 +18,11 @@ const processedPosts = publishedPosts.map((post) => {
 });
 ---
 
-<div class="wrapper">
+<div class="posts-wrapper">
     {
         processedPosts.map((post) => (
             <div class="card post">
-                <div class="body">
+                <div class="content">
                     <div>
                         <a
                             class="ghost link heading"
@@ -55,7 +55,7 @@ const processedPosts = publishedPosts.map((post) => {
 
 <style is:inline>
     @media (min-width: 64rem) {
-        .wrapper .post .body h1::before {
+        .posts-wrapper .post .content h1::before {
             content: ".";
             position: absolute;
             padding: 0;
@@ -68,28 +68,28 @@ const processedPosts = publishedPosts.map((post) => {
             color: var(--primary-color);
         }
 
-        .wrapper .post .body {
+        .posts-wrapper .post .content {
             padding: 1rem 1.75rem;
         }
 
-        .wrapper .post img {
+        .posts-wrapper .post img {
             height: 14.5rem;
         }
     }
 
-    .wrapper {
+    .posts-wrapper {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
     }
 
-    .wrapper .post {
+    .posts-wrapper .post {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
 
-    .wrapper .post .body {
+    .posts-wrapper .post .content {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -101,12 +101,12 @@ const processedPosts = publishedPosts.map((post) => {
         position: relative;
     }
 
-    .wrapper .post .cover {
+    .posts-wrapper .post .cover {
         position: relative;
         right: 26.8rem;
     }
 
-    .wrapper .post img {
+    .posts-wrapper .post img {
         position: absolute;
         top: -0.75rem;
         left: 1.75rem;
@@ -118,12 +118,12 @@ const processedPosts = publishedPosts.map((post) => {
         transition: filter 0.2s;
     }
 
-    .wrapper .post img:hover {
+    .posts-wrapper .post img:hover {
         filter: grayscale(0);
     }
 
     @media (max-width: 56rem) {
-        .wrapper .post {
+        .posts-wrapper .post {
             flex-direction: column-reverse;
             width: 80vw;
             @media (max-width: 32rem) {
@@ -134,12 +134,12 @@ const processedPosts = publishedPosts.map((post) => {
             overflow: hidden;
         }
 
-        .wrapper .post .body {
+        .posts-wrapper .post .content {
             height: auto;
             padding-bottom: 0;
         }
 
-        .wrapper .post img {
+        .posts-wrapper .post img {
             position: relative;
             bottom: -1rem;
             left: 26rem;
