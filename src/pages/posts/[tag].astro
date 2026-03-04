@@ -10,19 +10,23 @@ const allPosts: BlogEntry[] = await getCollection("blog");
 const published = allPosts.filter((p) => !p.data.draft);
 
 const posts = tag
-  ? published.filter((p) => p.data.tags?.some((t) => t.toLowerCase() === tag.toLowerCase()))
-  : published;
+    ? published.filter((p) =>
+          p.data.tags?.some((t) => t.toLowerCase() === tag.toLowerCase()),
+      )
+    : published;
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("blog");
-  const publishedPosts = allPosts.filter((p) => !p.data.draft);
-  const tags = Array.from(new Set(publishedPosts.flatMap((p) => p.data.tags ?? [])));
+    const allPosts = await getCollection("blog");
+    const publishedPosts = allPosts.filter((p) => !p.data.draft);
+    const tags = Array.from(
+        new Set(publishedPosts.flatMap((p) => p.data.tags ?? [])),
+    );
 
-  return tags.map((t) => ({ params: { tag: t } }));
+    return tags.map((t) => ({ params: { tag: t } }));
 }
 ---
 
 <Base>
     <h1><code>#{tag}</code></h1>
-  <PostList posts={posts} />
+    <PostList posts={posts} />
 </Base>

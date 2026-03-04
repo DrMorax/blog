@@ -5,7 +5,7 @@ type BlogEntry = CollectionEntry<"blog">;
 const { posts = [] }: { posts?: BlogEntry[] } = Astro.props;
 ---
 
-<ul class="posts card">
+<ul class="posts card onload-animation">
     {
         posts
             .sort(
@@ -15,7 +15,10 @@ const { posts = [] }: { posts?: BlogEntry[] } = Astro.props;
             )
             .map((post) => (
                 <li class="post">
-                    <a class="ghost static" href={`/post/${post.slug}`}>
+                    <a
+                        class="ghost static onload-animation"
+                        href={`/post/${post.slug}`}
+                    >
                         <div class="title">{post.data.title}</div>
                         <ul class="tags">
                             {post.data.tags.map((tag) => (

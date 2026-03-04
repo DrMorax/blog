@@ -45,7 +45,7 @@ main .banner {
 }
 
 #root[data-barba="container"] {
-    will-change: opacity, transform;
+    will-change: opacity, transform, scale;
 }
 
 :root {

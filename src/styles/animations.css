@@ -1,0 +1,38 @@
+:root {
+    --onload-animation-delay: 0.1s;
+    --onload-animation-interval: 0.1s;
+}
+
+@keyframes fade-in-up {
+    0% {
+        scale: 98%;
+        transform: translateY(2rem);
+        opacity: 0;
+    }
+    to {
+        scale: 100%;
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.onload-animation {
+    opacity: 0;
+    animation: 0.3s fade-in-up;
+    animation-fill-mode: forwards;
+}
+
+.onload-animation-fade-in {
+    opacity: 0;
+    animation: 0.3s fade-in ease-in;
+    animation-fill-mode: forwards;
+}
