@@ -17,7 +17,7 @@ barba.hooks.after(() => {
 
   const img = document.querySelector("article img");
   if (img) {
-    const offset = 200;
+    const offset = 300;
     const top = window.scrollY + img.getBoundingClientRect().top - offset;
     window.scrollTo({ top, behavior: "smooth" });
   }
