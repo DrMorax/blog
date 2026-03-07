@@ -18,14 +18,14 @@ main .banner {
     position: absolute;
     overflow: hidden;
     width: 100%;
-    min-height: 35rem;
-    max-height: 65vh;
+    min-height: 30rem;
+    max-height: 50vh;
     z-index: -1;
     top: 0;
     left: 0;
     transition: height 0.3s;
     @media (max-width: 56rem) {
-        top: 4rem;
+        top: 3rem;
     }
 }
 
