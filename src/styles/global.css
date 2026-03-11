@@ -115,6 +115,18 @@ h3 {
     font-weight: 900;
 }
 
+h1 {
+    @media (max-width: 50rem) {
+        font-size: 1.6rem;
+    }
+}
+
+h2 {
+    @media (max-width: 50rem) {
+        font-size: 1.3rem;
+    }
+}
+
 /* Utils */
 .ghost {
     color: var(--color);
