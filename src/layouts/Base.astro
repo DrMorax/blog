@@ -50,9 +50,10 @@ const socialImageURL = new URL(activeImage, Astro.site || "https://morax.dev");
     <body data-barba="wrapper">
         <main>
             <Navbar />
-            <div class="banner">
+            <!-- Uncomment to return the banner -->
+            <!-- <div class="banner">
                 <img class="banner-image" id="heroBanner" alt="Banner image" />
-            </div>
+            </div> -->
             <div
                 id="root"
                 data-barba="container"
@@ -95,14 +96,15 @@ const socialImageURL = new URL(activeImage, Astro.site || "https://morax.dev");
     // Palette stuff
     // --- Start ---
     const savedPalette = localStorage.getItem("palette");
-    let banner = document.getElementById("heroBanner") as HTMLImageElement;
+
+    // let banner = document.getElementById("heroBanner") as HTMLImageElement;
     if (savedPalette) {
         root.classList.add(savedPalette);
-        banner.src = `/banners/${savedPalette}.jpg`;
+        // banner.src = `/banners/${savedPalette}.jpg`;
     } else {
         // Default hydro palette
         root.classList.add("hydro");
-        banner.src = "/banners/hydro.jpg";
+        // banner.src = "/banners/hydro.jpg";
     }
 
     const paletteItems = document.querySelectorAll(".palettes li");
@@ -123,7 +125,7 @@ const socialImageURL = new URL(activeImage, Astro.site || "https://morax.dev");
                 root.classList.remove(paletteClass);
             });
             root.classList.add(paletteValue);
-            banner.src = `/banners/${paletteValue}.jpg`;
+            // banner.src = `/banners/${paletteValue}.jpg`;
             localStorage.setItem("palette", paletteValue);
         });
     });

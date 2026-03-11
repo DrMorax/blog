@@ -14,7 +14,9 @@ body {
     margin-inline: auto;
 }
 
-main .banner {
+/* Deprecated banner styling */
+
+/*main .banner {
     position: absolute;
     overflow: hidden;
     width: 100%;
@@ -34,7 +36,7 @@ main .banner {
     object-position: top;
     width: 100%;
     min-height: 25rem;
-}
+}*/
 
 .hydro,
 .cryo,
