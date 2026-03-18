@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # Ignoring potentional drafted posts
 src/content/blog/*.md
+
+# Ignore API http server for security reasons
+server
