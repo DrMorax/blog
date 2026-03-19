@@ -1,0 +1,110 @@
+---
+import Base from "@/layouts/Base.astro";
+import { API_URL } from "@/config";
+---
+
+<Base>
+    <div class="guestbook-wrapper onload-animation">
+        <form id="guestbook-form" class="card">
+            <label for="name">Name (optional)</label>
+            <input type="text" name="name" id="name" />
+
+            <label for="message">Message</label>
+            <textarea
+                name="message"
+                id="message"
+                required
+                minlength="3"
+                maxlength="16"></textarea>
+
+            <button type="submit" class="btn">Submit</button>
+            <p
+                id="form-status"
+                style="display: none; margin-top: 1rem; font-weight: bold;"
+            >
+            </p>
+        </form>
+
+        <div
+            id="messages-list"
+            class="onload-animation"
+            style="animation-delay: calc(var(--onload-animation-interval) * 2);"
+        >
+            <p class="loading">Loading guestbook...</p>
+        </div>
+    </div>
+</Base>
+
+<style is:inline>
+    .guestbook-wrapper,
+    #messages-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .guestbook-wrapper .message h3 {
+        color: var(--primary-color);
+    }
+
+    .guestbook-wrapper .message p {
+        margin-top: 0 !important;
+    }
+</style>
+
+<script is:inline define:vars={{ API_URL }}>
+    (async function init() {
+        const form = document.getElementById("guestbook-form");
+        const listContainer = document.getElementById("messages-list");
+        const statusMsg = document.getElementById("form-status");
+
+        try {
+            const res = await fetch(`${API_URL}/guestbook`);
+            const json = await res.json();
+
+            if (json.success && json.data) {
+                listContainer.innerHTML = json.data
+                    .map(
+                        (msg) => `
+                        <div class="message card">
+                            <h3>${msg.name || "Anon"}</h3>
+                            <p>${msg.message}</p>
+                        </div>
+                        `,
+                    )
+                    .join("");
+            }
+        } catch (e) {
+            listContainer.innerHTML =
+                '<div class="card"><h2>Guestbook currently offline</h2></div>';
+        }
+
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            try {
+                const res = await fetch(`${API_URL}/guestbook`, {
+                    method: "POST",
+                    body: formData,
+                });
+                const result = await res.json();
+
+                if (statusMsg) {
+                    statusMsg.textContent = result.message;
+                    statusMsg.style.display = "block";
+                    statusMsg.style.color = result.success
+                        ? "var(--primary-color)"
+                        : "red";
+                }
+
+                if (result.success) form.reset();
+            } catch (err) {
+                if (statusMsg) {
+                    statusMsg.textContent = "Server connection failed.";
+                    statusMsg.style.display = "block";
+                }
+            }
+        };
+    })();
+</script>
