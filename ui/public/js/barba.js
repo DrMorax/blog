@@ -2,19 +2,15 @@ import barba from "/js/barba.mjs";
 
 // View transition stuff
 // --- Start ---
-barba.init();
-
-let transitioning = false;
+barba.init({
+  prevent: ({ el }) => el.href && el.href.includes("/guest"),
+});
 
 barba.hooks.before(() => {
-  if (transitioning) return;
   window.scrollTo(0, 0);
-  transitioning = true;
 });
 
 barba.hooks.after(() => {
-  transitioning = false;
-
   const img = document.querySelector("article img");
   if (img) {
     const offset = 300;
