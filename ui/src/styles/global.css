@@ -151,7 +151,8 @@ h2 {
     cursor: pointer;
 }
 
-.ghost:active {
+.ghost:active,
+.btn:active {
     background-color: var(--accent-color);
     scale: 0.95;
 }
@@ -168,7 +169,45 @@ h2 {
     padding: 1rem 0;
 }
 
-.btn:active {
-    scale: 0.95;
-    background-color: var(--accent-color);
+.btn {
+    background-color: var(--primary-color);
+    padding-inline: 2rem;
+    border: none;
+    font-weight: bold;
+    transition: all 0.1s ease-out;
+    padding: 0.75rem 1rem;
+}
+
+.btn:hover {
+    background-color: var(--primary-color);
+}
+
+/* Form styling */
+
+form {
+    display: grid;
+    gap: 0.75rem;
+}
+
+form textarea {
+    height: 6rem;
+}
+
+form input,
+form textarea {
+    font-size: 16px;
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+    border-radius: calc(var(--border-rounded) - 0.5rem);
+    border: none;
+    padding: 0.5rem;
+}
+
+form .btn {
+    width: 20%;
+    border-radius: calc(var(--border-rounded) - 0.5rem);
+}
+
+form .btn:active {
+    scale: 0.99;
 }
