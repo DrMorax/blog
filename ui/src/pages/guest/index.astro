@@ -7,15 +7,16 @@ import { API_URL } from "@/config";
     <div class="guestbook-wrapper onload-animation">
         <form id="guestbook-form" class="card">
             <label for="name">Name (optional)</label>
-            <input type="text" name="name" id="name" />
+            <input
+                type="text"
+                name="name"
+                id="name"
+                minlength="3"
+                maxlength="32"
+            />
 
             <label for="message">Message</label>
-            <textarea
-                name="message"
-                id="message"
-                required
-                minlength="3"
-                maxlength="16"></textarea>
+            <textarea name="message" id="message" required></textarea>
 
             <button type="submit" class="btn">Submit</button>
             <p
