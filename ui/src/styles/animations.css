@@ -5,13 +5,11 @@
 
 @keyframes fade-in-up {
     0% {
-        scale: 98%;
-        transform: translateY(2rem);
+        scale: 97%;
         opacity: 0;
     }
     to {
         scale: 100%;
-        transform: translateY(0);
         opacity: 1;
     }
 }
