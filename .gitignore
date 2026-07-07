@@ -21,7 +21,7 @@ pnpm-debug.log*
 .wrangler
 
 # Ignoring potentional drafted posts
-src/content/blog/*.md
+ui/src/content/blog/*.md
 
 # Ignore API http server for security reasons
 server
