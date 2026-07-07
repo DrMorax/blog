@@ -25,3 +25,6 @@ ui/src/content/blog/*.md
 
 # Ignore API http server for security reasons
 server
+
+# Temporary files
+temp
