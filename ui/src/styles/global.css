@@ -68,6 +68,10 @@ body {
     padding: 0.75rem;
 }
 
+.light .card {
+    border-color: var(--primary-color);
+}
+
 /* Reusable styles */
 .fade-slide-hidden {
     position: absolute;
