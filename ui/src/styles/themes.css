@@ -3,7 +3,6 @@
     --anemo-primary: #1ae4b2;
     --anemo-secondary: #53c1bb30;
     --anemo-accent: #53c1bb1a;
-    --anemo-background: #53c1bc09;
 
     --anemo-dark-primary: #3bec9c;
     --anemo-dark-secondary: #3bec9c30;
@@ -14,7 +13,6 @@
     --geo-primary: #deac49;
     --geo-secondary: #deac4930;
     --geo-accent: #deac491a;
-    --geo-background: #ffc85b09;
 
     --geo-dark-primary: #d4a340;
     --geo-dark-secondary: #d4a34030;
@@ -25,7 +23,6 @@
     --electro-primary: #ee34ff;
     --electro-secondary: #ee34ff30;
     --electro-accent: #ee34ff1a;
-    --electro-background: #ee34ff09;
 
     --electro-dark-primary: #e162ed;
     --electro-dark-secondary: #e162ed30;
@@ -36,7 +33,6 @@
     --dendro-primary: #27ed27;
     --dendro-secondary: #27ed2730;
     --dendro-accent: #27ed271a;
-    --dendro-background: #27ed2709;
 
     --dendro-dark-primary: #55e255;
     --dendro-dark-secondary: #55e25530;
@@ -47,7 +43,6 @@
     --hydro-primary: #0c8af9;
     --hydro-secondary: #0c8af930;
     --hydro-accent: #0c8af91a;
-    --hydro-background: #0c8af909;
 
     --hydro-dark-primary: #3094eb;
     --hydro-dark-secondary: #3094eb30;
@@ -58,7 +53,6 @@
     --pyro-primary: #ff0000;
     --pyro-secondary: #ff000030;
     --pyro-accent: #ff00001a;
-    --pyro-background: #ff000009;
 
     --pyro-dark-primary: #ea2828;
     --pyro-dark-secondary: #ea282830;
@@ -69,7 +63,6 @@
     --cryo-primary: #29e1ee;
     --cryo-secondary: #00eeff30;
     --cryo-accent: #00eeff1a;
-    --cryo-background: #29e1ee09;
 
     --cryo-dark-primary: #41f2ff;
     --cryo-dark-secondary: #41f2ff30;
@@ -89,7 +82,6 @@
 /* Light theme override */
 @media (prefers-color-scheme: light) {
     :root {
-        --background-color: #f5f5f5;
         --card-background-color: #ffffff;
         --secondary-background-color: #e0e0e0;
         --muted-color: #919191;
@@ -99,12 +91,13 @@
 }
 
 html.light {
-    --background-color: #f5f5f5;
-    --card-background-color: #ffffff;
+    --card-background-color: #f5f5f5;
     --secondary-background-color: #e0e0e0;
     --muted-color: #919191;
     --muted-background-color: #7f7f7f;
     --color: #191919;
+
+    background-color: var(--card-background-color);
 }
 html.dark {
     --background-color: #0d0d0d;
@@ -115,12 +108,15 @@ html.dark {
     --color: #f5f5f5;
 }
 
+.light body {
+    background-color: var(--card-background-color);
+}
+
 /* Palettes */
 html.anemo.light {
     --primary-color: var(--anemo-primary);
     --secondary-background-color: var(--anemo-secondary);
     --accent-color: var(--anemo-accent);
-    --background-color: var(--anemo-background);
 }
 html.anemo.dark {
     --primary-color: var(--anemo-dark-primary);
@@ -134,7 +130,6 @@ html.geo.light {
     --primary-color: var(--geo-primary);
     --secondary-background-color: var(--geo-secondary);
     --accent-color: var(--geo-accent);
-    --background-color: var(--geo-background);
 }
 html.geo.dark {
     --primary-color: var(--geo-dark-primary);
@@ -148,7 +143,6 @@ html.electro.light {
     --primary-color: var(--electro-primary);
     --secondary-background-color: var(--electro-secondary);
     --accent-color: var(--electro-accent);
-    --background-color: var(--electro-background);
 }
 html.electro.dark {
     --primary-color: var(--electro-dark-primary);
@@ -162,7 +156,6 @@ html.dendro.light {
     --primary-color: var(--dendro-primary);
     --secondary-background-color: var(--dendro-secondary);
     --accent-color: var(--dendro-accent);
-    --background-color: var(--dendro-background);
 }
 html.dendro.dark {
     --primary-color: var(--dendro-dark-primary);
@@ -176,7 +169,6 @@ html.hydro.light {
     --primary-color: var(--hydro-primary);
     --secondary-background-color: var(--hydro-secondary);
     --accent-color: var(--hydro-accent);
-    --background-color: var(--hydro-background);
 }
 html.hydro.dark {
     --primary-color: var(--hydro-dark-primary);
@@ -190,7 +182,6 @@ html.pyro.light {
     --primary-color: var(--pyro-primary);
     --secondary-background-color: var(--pyro-secondary);
     --accent-color: var(--pyro-accent);
-    --background-color: var(--pyro-background);
 }
 html.pyro.dark {
     --primary-color: var(--pyro-dark-primary);
@@ -204,7 +195,6 @@ html.cryo.light {
     --primary-color: var(--cryo-primary);
     --secondary-background-color: var(--cryo-secondary);
     --accent-color: var(--cryo-accent);
-    --background-color: var(--cryo-background);
 }
 html.cryo.dark {
     --primary-color: var(--cryo-dark-primary);
