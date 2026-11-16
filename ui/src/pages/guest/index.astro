@@ -18,12 +18,13 @@ import { API_URL } from "@/config";
             <label for="message">Message</label>
             <textarea name="message" id="message" required></textarea>
 
-            <button type="submit" class="btn">Submit</button>
+            <button type="submit" class="btn">
+                Submit
+            </button>
             <p
                 id="form-status"
                 style="display: none; margin-top: 1rem; font-weight: bold;"
-            >
-            </p>
+            ></p>
         </form>
 
         <div
@@ -50,6 +51,12 @@ import { API_URL } from "@/config";
 
     .guestbook-wrapper .message p {
         margin-top: 0 !important;
+    }
+
+    .guestbook-wrapper input,
+    .guestbook-wrapper textarea {
+        border: solid 1px;
+        background-color: var(--background);
     }
 </style>
 
