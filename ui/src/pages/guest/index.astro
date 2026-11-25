@@ -1,65 +1,99 @@
 ---
 import Base from "@/layouts/Base.astro";
+import PageSpread from "@/components/PageSpread.astro";
 import { API_URL } from "@/config";
 ---
 
-<Base>
-    <div class="guestbook-wrapper onload-animation">
-        <form
-            id="guestbook-form"
-            class="card"
-            action={`${API_URL}/guestbook`}
-            method="post"
-        >
-            <label for="name">Name (optional)</label>
+<Base title="Guestbook | Morax">
+    <PageSpread>
+        <h1>Guestbook</h1>
+        <p>Glad you stopped by. Leave a note to say hi!</p>
+        <form id="guestbook-form" action={`${API_URL}/guestbook`} method="post">
+            <label for="name">
+                Name <span>(optional)</span>
+            </label>
             <input
                 type="text"
                 name="name"
                 id="name"
                 minlength="3"
                 maxlength="32"
+                autocomplete="nickname"
             />
-
             <label for="message">Message</label>
             <textarea name="message" id="message" required></textarea>
-
-            <button type="submit" class="btn">
-                Submit
-            </button>
-            <p
-                id="form-status"
-                style="display: none; margin-top: 1rem; font-weight: bold;"
-            ></p>
+            <button type="submit">Sign the guestbook</button>
+            <p id="form-status" role="status"></p>
         </form>
 
-        <div
-            id="messages-list"
-            class="onload-animation"
-            style="animation-delay: calc(var(--onload-animation-interval) * 2);"
-        >
-            <p class="loading">Loading guestbook...</p>
-        </div>
-    </div>
+        <section slot="side" class="guest-notes onload-animation">
+            <div id="messages-list">
+                <p>Loading notes…</p>
+            </div>
+        </section>
+    </PageSpread>
     <style is:inline>
-        .guestbook-wrapper,
-        #messages-list {
-            display: flex;
-            flex-direction: column;
+        #guestbook-form {
+            margin-top: 1.5rem;
             gap: 0.5rem;
         }
-
-        .guestbook-wrapper .message h3 {
-            color: var(--primary-color);
+        #guestbook-form label {
+            font-weight: 650;
         }
-
-        .guestbook-wrapper .message p {
-            margin-top: 0 !important;
+        #guestbook-form label span {
+            font-size: 0.9em;
+            font-weight: 400;
         }
-
-        .guestbook-wrapper input,
-        .guestbook-wrapper textarea {
-            border: solid 1px;
-            background-color: var(--background);
+        #guestbook-form :is(input, textarea) {
+            box-sizing: border-box;
+            width: 100%;
+            margin-bottom: 0.65rem;
+            padding: 0.7rem;
+            border: 1px solid color-mix(in srgb, var(--color) 45%, transparent);
+            background: var(--card-background-color);
+            color: var(--color);
+            font: inherit;
+        }
+        #guestbook-form textarea {
+            min-height: 7rem;
+            resize: vertical;
+        }
+        #guestbook-form button {
+            justify-self: start;
+            padding: 0.7rem 1rem;
+            border: 0;
+            border-radius: 0.6rem;
+            background: var(--color);
+            color: var(--card-background-color);
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        #guestbook-form button:hover {
+            text-decoration: underline;
+        }
+        #form-status:empty {
+            margin: 0;
+        }
+        .guest-notes #messages-list {
+            display: grid;
+            gap: 0.65rem;
+        }
+        .guest-notes .message {
+            min-width: 0;
+            padding: 1rem;
+        }
+        .guest-notes .message h3 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+        .guest-notes .message div {
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+        .guest-notes .message img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </Base>

@@ -14,13 +14,10 @@ export function initGuestbook(container) {
       });
       const result = await response.json();
       status.textContent = result.message;
-      status.style.color = result.success ? "var(--primary-color)" : "red";
       if (result.success) form.reset();
     } catch {
       status.textContent = "Server connection failed.";
-      status.style.color = "red";
     }
-    status.style.display = "block";
   };
 
   loadNotes(form.action, container.querySelector("#messages-list"));
@@ -34,6 +31,10 @@ async function loadNotes(url, list) {
       throw new Error("Guestbook unavailable");
     }
 
+    if (!result.data.length) {
+      list.textContent = "No notes yet. Be the first to sign!";
+      return;
+    }
     list.replaceChildren(...result.data.map((note) => {
       const card = document.createElement("div");
       card.className = "message card";
@@ -48,7 +49,6 @@ async function loadNotes(url, list) {
       return card;
     }));
   } catch {
-    list.innerHTML =
-      '<div class="card"><h2>Guestbook currently offline</h2></div>';
+    list.textContent = "The guestbook is offline. Check back soon.";
   }
 }

@@ -1,60 +1,65 @@
 ---
 import Base from "@/layouts/Base.astro";
+import PageSpread from "@/components/PageSpread.astro";
 ---
 
-<Base>
-    <article class="card onload-animation">
-        <section class="onload-animation">
-            <h1>
-                Hi, I'm <em>Morax</em> :3
-            </h1>
-        </section>
+<Base title="About | Morax">
+    <PageSpread>
+        <h1>
+            Hi, I'm <em>Morax</em> :3
+        </h1>
+        <p>
+            I'm a 22-year-old cybersecurity student from Iraq, where I was born
+            and still live.
+        </p>
+        <p>
+            I build things for the web with JavaScript, TypeScript, and Go.
+            Lately I've been dabbling in C and systems programming. Turns out
+            programming <strong>is</strong> fun; maybe I'd just been looking at
+            the boring side of it.
+        </p>
+        <p>
+            I hope you like the theme switchers. It took me ages to get them
+            looking the way I wanted. Anyway, enjoy your visit :3
+        </p>
 
-        <section class="onload-animation">
+        <aside slot="side" class="about-reading onload-animation">
+            <h2>On the blog</h2>
             <p>
-                a 22 y.o. college student majoring in Cybersecurity; born and
-                residing in Iraq.
-                <br />
-
-                I'm just your average web dev who is comfortable building things
-                with Javascript/Typescript & Golang, but I don't plan to remain
-                as such.
-                <br />
-
-                I've been dabbling with C and systems programming recently. I'm
-                starting to realize that programming <strong>IS</strong> fun, and
-                that I'm simply exposed to the boring side of it.
+                I’m aiming for about 80% tech and 20% whatever. For now, here
+                are two movies I wrote about:
             </p>
-        </section>
-
-        <section class="onload-animation">
-            <h2>I welcome you to my humble abode</h2>
-        </section>
-
-        <section class="onload-animation">
-            <p>
-                I hope you like the theme switchers, it was a pain in the ass to
-                make them look decent enough for my liking.
-                <br /> Currently, I have nothing here except for these two movie reviews:
-                <ul>
-                    <li>
-                        <a href="/post/hackers-1995">Hackers (1995)</a>
-                    </li>
-                    <li>
-                        <a href="/post/chainsaw-man-reze-arc"
-                            >Chainsaw man: Reze arc</a
-                        >
-                    </li>
-                </ul>
-            </p>
-        </section>
-
-        <section class="onload-animation">
-            <p>
-                When I have the time, I plan to have more posts that consist of
-                ~80% tech post and the other 20% could be whatever.
-            </p>
-            <p>Anyway, enjoy your visit :3</p>
-        </section>
-    </article>
+            <ul>
+                <li>
+                    <a href="/post/hackers-1995">Hackers (1995)</a>
+                </li>
+                <li>
+                    <a href="/post/chainsaw-man-reze-arc">
+                        Chainsaw Man: Reze Arc
+                    </a>
+                </li>
+            </ul>
+        </aside>
+    </PageSpread>
+    <style is:inline>
+        .about-reading ul {
+            padding: 0;
+            margin: 1rem 0 0;
+            list-style: none;
+        }
+        .about-reading li {
+            border-top: 1px solid var(--secondary-background-color);
+        }
+        .about-reading a {
+            display: block;
+            padding-block: 0.75rem;
+            color: inherit;
+            font-weight: 600;
+            text-underline-offset: 0.2em;
+            text-decoration-color: var(--primary-color);
+        }
+        .about-reading a:hover {
+            text-decoration-color: currentColor;
+        }
+    </style>
 </Base>

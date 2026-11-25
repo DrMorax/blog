@@ -1,0 +1,47 @@
+<div class="page-spread card onload-animation">
+    <div class="spread-body"><slot /></div>
+    <div class="spread-side"><slot name="side" /></div>
+</div>
+
+<style is:inline>
+    .page-spread {
+        --inset: clamp(1.25rem, 4vw, 2.5rem);
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+        padding: 0;
+        overflow-wrap: anywhere;
+    }
+    .page-spread > div {
+        padding: var(--inset);
+    }
+    .page-spread .spread-side {
+        background: var(--accent-color);
+        border-inline-start: 1px solid var(--secondary-background-color);
+        border-radius: 0 var(--border-rounded) var(--border-rounded) 0;
+    }
+    .page-spread h1 {
+        font-size: clamp(1.6rem, 3vw, 2rem);
+    }
+    .page-spread h2 {
+        font-size: 1.2rem;
+    }
+    .page-spread p {
+        line-height: 1.6;
+        margin: 0.75rem 0 0;
+    }
+    .page-spread a:focus-visible,
+    .page-spread :is(input, textarea, button):focus-visible {
+        outline: 2px solid var(--color);
+        outline-offset: 3px;
+    }
+    @media (max-width: 44rem) {
+        .page-spread {
+            grid-template-columns: minmax(0, 1fr);
+        }
+        .page-spread .spread-side {
+            border-inline-start: 0;
+            border-top: 1px solid var(--secondary-background-color);
+            border-radius: 0 0 var(--border-rounded) var(--border-rounded);
+        }
+    }
+</style>
