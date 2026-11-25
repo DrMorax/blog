@@ -9,6 +9,6 @@ const allPosts: BlogEntry[] = await getCollection("blog");
 const posts = allPosts.filter((p) => !p.data.draft);
 ---
 
-<Base>
+<Base title="Post archive | Morax">
     <PostList posts={posts} />
 </Base>
