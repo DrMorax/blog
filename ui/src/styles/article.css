@@ -30,7 +30,7 @@
 }
 
 .post-sections {
-    margin-top: 1.25rem;
+    display: none;
     font-size: 1rem;
 }
 
@@ -67,13 +67,13 @@
         grid-area: end;
     }
     .post-sections {
+        display: block;
         grid-area: margin;
         align-self: start;
         position: sticky;
         top: 1rem;
         max-height: calc(100dvh - 2rem);
         overflow-y: auto;
-        margin-top: 0;
         border-inline-start: 1px solid var(--secondary-background-color);
         padding-inline-start: 1.25rem;
     }
