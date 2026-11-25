@@ -1,5 +1,4 @@
 ---
-import PostMeta from "@/components/reusable/PostMeta.astro";
 import Base from "@/layouts/Base.astro";
 import { getCollection } from "astro:content";
 
@@ -13,6 +12,13 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const rendered = await post.render();
+const sections = rendered.headings.filter(({ depth }) => depth === 2 || depth === 3);
+const [year, month, day] = post.data.date.split("-");
+const published = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+const dateLabel = new Intl.DateTimeFormat("en", {
+    dateStyle: "long",
+    timeZone: "UTC",
+}).format(new Date(published));
 
 const ogImagePath = `/blog/${post.slug}/cover.jpg`;
 ---
@@ -22,12 +28,36 @@ const ogImagePath = `/blog/${post.slug}/cover.jpg`;
     title={post.data.title}
     description={post.data.description}
 >
-    <article class="card">
-        <div class="title">
+    <article class="post-article card">
+        <header class="post-heading">
             <h1>{post.data.title}</h1>
-        </div>
-        <PostMeta post={post} />
+            <p class="post-deck">{post.data.description}</p>
+            <div class="post-details">
+                <time datetime={published}>{dateLabel}</time>
+                {post.data.tags.length > 0 && (
+                    <ul aria-label="Post tags">
+                        {post.data.tags.map((tag) => (
+                            <li><a href={`/posts/${encodeURIComponent(tag)}`}>#{tag.replaceAll("-", " ")}</a></li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        </header>
+        {sections.length > 0 && (
+            <nav class="post-sections" aria-label="Section links">
+                <ul>
+                    {sections.map(({ slug, text }) => (
+                        <li><a href={`#${slug}`}>{text}</a></li>
+                    ))}
+                </ul>
+            </nav>
+        )}
 
-        <rendered.Content />
+        <div class="post-prose">
+            <rendered.Content />
+        </div>
+        <footer class="post-end">
+            <a href="/posts"><span aria-hidden="true">← </span>All posts</a>
+        </footer>
     </article>
 </Base>

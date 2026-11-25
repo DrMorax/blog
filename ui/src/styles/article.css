@@ -1,60 +1,165 @@
-article {
-    padding: 1rem 2rem !important;
-    @media (max-width: 64rem) {
-        padding: 1rem !important;
-    }
+.post-article.card {
+    box-sizing: border-box;
+    padding: clamp(1.1rem, 4vw, 3rem);
+    overflow-wrap: anywhere;
 }
 
-article .title {
-    position: relative;
+.post-article > :is(.post-heading, .post-sections, .post-prose, .post-end) {
+    max-width: 48rem;
+    margin-inline: auto;
 }
 
-@media (min-width: 64rem) {
-    article h1::before {
-        content: ".";
-        position: absolute;
-        padding: 0;
-        left: -1rem;
-        top: 0.7rem;
-        font-size: 1rem;
-        font-weight: 100;
-        border-radius: 1rem;
-        background-color: var(--primary-color);
-        color: var(--primary-color);
-    }
+.post-heading h1 {
+    margin: 0;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    text-wrap: balance;
 }
 
-article img {
-    width: 100% !important;
-    height: auto;
-    border-radius: var(--border-rounded);
+.post-deck {
+    margin: 0.5rem 0 1rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
 }
 
-article a {
-    color: var(--primary-color);
-    transition: all 0.1s ease-out;
-    text-decoration-style: dashed;
-    font-weight: bold;
-}
-
-article a:hover {
-    background-color: var(--secondary-background-color);
-}
-
-article ol {
-    padding-left: 1.5rem;
-    font-size: 18px;
-}
-
-article ul {
+.post-details,
+.post-details ul {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    padding-left: 1.75rem;
-    font-size: 18px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 0.8rem;
 }
 
-article p {
+.post-sections {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+}
+
+.post-sections ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     line-height: 1.6;
-    font-size: 20px;
+}
+
+.post-sections li + li {
+    margin-top: 0.35rem;
+}
+
+@media (min-width: 60rem) {
+    .post-article.card:has(> .post-sections) {
+        display: grid;
+        grid-template-columns: minmax(0, 48rem) minmax(12rem, 16rem);
+        grid-template-areas: "title margin" "prose margin" "end margin";
+        justify-content: center;
+        column-gap: clamp(2rem, 4vw, 3rem);
+    }
+    .post-article:has(> .post-sections)
+        > :is(.post-heading, .post-sections, .post-prose, .post-end) {
+        margin-inline: 0;
+    }
+    .post-heading {
+        grid-area: title;
+    }
+    .post-prose {
+        grid-area: prose;
+    }
+    .post-end {
+        grid-area: end;
+    }
+    .post-sections {
+        grid-area: margin;
+        align-self: start;
+        position: sticky;
+        top: 1rem;
+        max-height: calc(100dvh - 2rem);
+        overflow-y: auto;
+        margin-top: 0;
+        border-inline-start: 1px solid var(--secondary-background-color);
+        padding-inline-start: 1.25rem;
+    }
+}
+
+.post-details {
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--color) 45%, var(--muted-color));
+}
+
+.post-details ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.post-article a {
+    color: inherit;
+    text-underline-offset: 0.2em;
+    text-decoration-color: var(--primary-color, currentColor);
+}
+
+.post-article a:is(:hover, :focus-visible) {
+    text-decoration-color: currentColor;
+}
+
+.post-sections a[aria-current="location"] {
+    font-weight: 700;
+    text-decoration-thickness: 0.16em;
+    text-decoration-color: var(--primary-color, currentColor);
+}
+
+.post-prose .heading-permalink {
+    text-decoration: none;
+}
+
+.post-prose .heading-permalink:is(:hover, :focus-visible) {
+    text-decoration: underline;
+}
+
+.post-prose {
+    margin-block: 1.5rem;
+    font-size: clamp(1.05rem, 1rem + 0.35vw, 1.2rem);
+    line-height: 1.7;
+}
+
+.post-prose > * {
+    max-width: 65ch;
+    margin: 1em auto;
+}
+
+.post-prose > :is(h2, h3, h4) {
+    max-width: none;
+    margin: 1.65em 0 0.5em;
+    line-height: 1.25;
+    text-wrap: balance;
+    scroll-margin-top: 1rem;
+}
+
+.post-prose img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1rem auto;
+    border-radius: 0.65rem;
+}
+
+.post-prose > p:has(> img:only-child) {
+    max-width: none;
+}
+
+.post-prose blockquote {
+    box-sizing: border-box;
+    padding-inline-start: 1rem;
+    border-inline-start: 3px solid var(--primary-color);
+}
+
+.post-prose pre {
+    box-sizing: border-box;
+    overflow-x: auto;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.9em;
+}
+
+.post-end {
+    padding-top: 1rem;
+    border-top: 1px solid var(--secondary-background-color);
 }
