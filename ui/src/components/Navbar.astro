@@ -69,39 +69,3 @@ import ThemeMenu from "./ThemeMenu.astro";
         }*/
     }
 </style>
-
-<script>
-    // Active link highlighting
-    // --- Start---
-    const path = stripSlash(window.location.pathname);
-    const links = document.querySelectorAll<HTMLAnchorElement>(".link");
-
-    function stripSlash(path: string) {
-        if (!path) return "";
-        return path !== "/" && path.endsWith("/") ? path.slice(0, -1) : path;
-    }
-
-    function setActiveLink(activePath: string, links: NodeListOf<Element>) {
-        const normalized = stripSlash(activePath);
-        links.forEach((link) => {
-            const href = stripSlash(link.getAttribute("href") || "");
-            if (href === normalized) {
-                link.classList.add("active");
-            } else {
-                link.classList.remove("active");
-            }
-        });
-    }
-
-    setActiveLink(path, links);
-
-    links.forEach((link) => {
-        link.addEventListener("click", (e) => {
-            if (link.classList.contains("active")) e.preventDefault();
-
-            const href = link.getAttribute("href");
-            if (href) setActiveLink(href, links);
-        });
-    });
-    // --- End ---
-</script>
