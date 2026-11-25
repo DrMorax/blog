@@ -1,7 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
+@import "@fontsource/chakra-petch/latin-700.css";
+@import "@fontsource/chakra-petch/latin-700-italic.css";
+@import "@fontsource-variable/ibm-plex-sans/wght.css";
+@import "@fontsource-variable/ibm-plex-sans/wght-italic.css";
 
 body {
-    font-family: "Exo 2", sans-serif;
+    font-family: "IBM Plex Sans Variable", sans-serif;
     font-style: normal;
     margin: 0;
     width: 100vw;
@@ -47,6 +50,7 @@ body {
 }
 
 :root {
+    --font-heading: "Chakra Petch", sans-serif;
     --max-page-width: 72rem;
     --border-rounded: 1rem;
 }
@@ -110,12 +114,20 @@ body {
 
 /* Typography */
 
+:is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-heading);
+}
+
+button, input, textarea, select {
+    font-family: inherit;
+}
+
 h1,
 h2,
 h3 {
     margin: 0 0 0.75rem;
     line-height: 1.2;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 h1 {
