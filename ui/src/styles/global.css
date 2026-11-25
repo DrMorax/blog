@@ -46,12 +46,8 @@ body {
     }
 }
 
-#root[data-barba="container"] {
-    will-change: opacity, transform, scale;
-}
-
 :root {
-    --max-page-width: 64rem;
+    --max-page-width: 72rem;
     --border-rounded: 1rem;
 }
 

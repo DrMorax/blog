@@ -22,7 +22,7 @@ const entries = posts
     .sort((a, b) => b.date.localeCompare(a.date));
 ---
 
-<section class="post-archive card onload-animation">
+<section class="post-archive card">
     {tag ? (
         <header class="archive-trail">
             <a href="/posts">All posts</a>
@@ -35,7 +35,7 @@ const entries = posts
     {entries.length ? (
         <ul class="archive-list">
             {entries.map(({ post, date }) => (
-                <li class="archive-entry onload-animation">
+                <li class="archive-entry">
                     <time datetime={date}>
                         {monthYear.format(new Date(date))}
                     </time>
