@@ -30,15 +30,19 @@ export function initPostSections(container) {
     frame = 0;
     // Use the last heading past the reading line, including in long sections.
     const line = Math.min(100, window.innerHeight * 0.2);
-    let next;
-    for (const { heading, link } of sections) {
-      if (heading.getBoundingClientRect().top > line) break;
-      next = link;
+    let nextIndex = -1;
+    for (let i = 0; i < sections.length; i++) {
+      if (sections[i].heading.getBoundingClientRect().top > line) break;
+      nextIndex = i;
     }
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 1) {
-      next = sections.at(-1).link;
+      nextIndex = sections.length - 1;
     }
+    const next = nextIndex >= 0 ? sections[nextIndex].link : undefined;
     if (next === current) return;
+    for (let i = 0; i <= nextIndex; i++) {
+      sections[i].link.setAttribute("data-explored", "");
+    }
     current?.removeAttribute("aria-current");
     next?.setAttribute("aria-current", "location");
     current = next;

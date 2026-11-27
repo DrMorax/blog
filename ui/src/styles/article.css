@@ -37,12 +37,47 @@
 .post-sections ul {
     list-style: none;
     padding: 0;
+    padding-inline-end: 0.35rem;
     margin: 0;
     line-height: 1.6;
+    border-inline-start: 1px solid var(--secondary-background-color);
+}
+
+.post-sections li {
+    position: relative;
+    padding-inline-start: 1.25rem;
 }
 
 .post-sections li + li {
     margin-top: 0.35rem;
+}
+
+.post-sections li::before {
+    content: "";
+    position: absolute;
+    inset-block: 0.25em;
+    inset-inline-start: -1.5px;
+    width: 2px;
+    border-radius: 999px;
+    background-color: var(--primary-color, currentColor);
+    opacity: 0;
+    transform: scaleY(0.35);
+    pointer-events: none;
+}
+
+.post-sections li:has(> a[data-explored])::before {
+    opacity: 0.35;
+    transform: scaleY(0.65);
+}
+
+.post-sections li:has(> a:is(:hover, :focus-visible))::before {
+    opacity: 0.65;
+    transform: scaleY(0.85);
+}
+
+.post-sections li:has(> a[aria-current="location"])::before {
+    opacity: 1;
+    transform: scaleY(1);
 }
 
 @media (min-width: 60rem) {
@@ -73,9 +108,9 @@
         position: sticky;
         top: 1rem;
         max-height: calc(100dvh - 2rem);
+        overflow-x: hidden;
         overflow-y: auto;
-        border-inline-start: 1px solid var(--secondary-background-color);
-        padding-inline-start: 1.25rem;
+        padding-inline-start: 2px;
     }
 }
 
@@ -100,10 +135,52 @@
     text-decoration-color: currentColor;
 }
 
+.post-sections a {
+    display: block;
+    color: color-mix(in srgb, var(--color) 60%, var(--card-background-color));
+    font-weight: 400;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 0.08em;
+}
+
+.post-sections a[data-explored] {
+    color: color-mix(in srgb, var(--color) 82%, var(--card-background-color));
+    text-decoration-color: color-mix(
+        in srgb,
+        var(--primary-color, currentColor) 45%,
+        transparent
+    );
+}
+
+.post-sections a:is(:hover, :focus-visible) {
+    color: var(--color);
+    text-decoration-color: currentColor;
+    transform: translateX(0.2rem);
+}
+
 .post-sections a[aria-current="location"] {
+    color: var(--color);
     font-weight: 700;
     text-decoration-thickness: 0.16em;
     text-decoration-color: var(--primary-color, currentColor);
+    transform: translateX(0.25rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .post-sections li::before {
+        transition:
+            opacity 200ms ease-out,
+            transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .post-sections a {
+        transition:
+            color 180ms ease-out,
+            font-weight 180ms ease-out,
+            text-decoration-color 180ms ease-out,
+            text-decoration-thickness 180ms ease-out,
+            transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
 }
 
 .post-prose .heading-permalink {
