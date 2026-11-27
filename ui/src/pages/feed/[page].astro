@@ -27,7 +27,7 @@ const currentPosts = allPosts.slice(
 );
 
 const processedPosts = currentPosts.map((post) => {
-    const len = post.body.split(/\s+/).length;
+    const len = (post.body ?? "").split(/\s+/).length;
     const time = Math.floor(len / 130);
     return { ...post, wordCount: len, readingTime: time > 0 ? time : 1 };
 });

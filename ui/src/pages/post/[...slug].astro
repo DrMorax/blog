@@ -1,17 +1,17 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
     const posts = await getCollection("blog", ({ data }) => !data.draft);
     return posts.map((post) => ({
-        params: { slug: post.slug },
+        params: { slug: post.id },
         props: { post },
     }));
 }
 
 const { post } = Astro.props;
-const rendered = await post.render();
+const rendered = await render(post);
 const sections = rendered.headings.filter(({ depth }) => depth === 2 || depth === 3);
 const [year, month, day] = post.data.date.split("-");
 const published = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
@@ -20,7 +20,7 @@ const dateLabel = new Intl.DateTimeFormat("en", {
     timeZone: "UTC",
 }).format(new Date(published));
 
-const ogImagePath = `/blog/${post.slug}/cover.jpg`;
+const ogImagePath = `/blog/${post.id}/cover.jpg`;
 ---
 
 <Base

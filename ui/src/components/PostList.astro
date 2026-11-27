@@ -41,11 +41,11 @@ const entries = posts
                     </time>
                     <div>
                         <h2>
-                            <a href={`/post/${post.slug}`}>{post.data.title}</a>
+                            <a href={`/post/${post.id}`}>{post.data.title}</a>
                         </h2>
                         {post.data.tags.length > 0 && (
                             <ul class="archive-tags" aria-label="Tags">
-                                {post.data.tags.map((name) => (
+                                {post.data.tags.map((name: string) => (
                                     <li>
                                         <a
                                             href={`/posts/${encodeURIComponent(name)}`}
