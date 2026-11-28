@@ -10,23 +10,60 @@ export async function getStaticPaths() {
     }));
 }
 
+const normalizeDate = (raw: string) => {
+    const [year, month = "01", day = "01"] = raw.split("-");
+    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+};
+
 const { post } = Astro.props;
 const rendered = await render(post);
 const sections = rendered.headings.filter(({ depth }) => depth === 2 || depth === 3);
-const [year, month, day] = post.data.date.split("-");
-const published = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+const published = normalizeDate(post.data.date);
+const updated = post.data.updated_at ? normalizeDate(post.data.updated_at) : undefined;
 const dateLabel = new Intl.DateTimeFormat("en", {
     dateStyle: "long",
     timeZone: "UTC",
 }).format(new Date(published));
 
 const ogImagePath = `/blog/${post.id}/cover.jpg`;
+const siteURL = Astro.site ?? new URL("https://morax.dev");
+const postURL = new URL(Astro.url.pathname, siteURL).toString();
+const ogImageURL = new URL(ogImagePath, siteURL).toString();
+
+const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.data.title,
+    description: post.data.description,
+    image: [ogImageURL],
+    datePublished: published,
+    ...(updated ? { dateModified: updated } : {}),
+    author: {
+        "@type": "Person",
+        name: "Morax",
+        url: new URL("/about/", siteURL).toString(),
+    },
+    publisher: {
+        "@type": "Person",
+        name: "Morax",
+        url: siteURL.toString(),
+    },
+    mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": postURL,
+    },
+    keywords: post.data.tags,
+};
 ---
 
 <Base
     image={ogImagePath}
-    title={post.data.title}
+    title={`${post.data.title} | Morax`}
     description={post.data.description}
+    type="article"
+    publishedTime={published}
+    modifiedTime={updated}
+    jsonLd={articleJsonLd}
 >
     <article class="post-article card">
         <header class="post-heading">

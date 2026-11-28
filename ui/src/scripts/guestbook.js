@@ -45,6 +45,9 @@ async function loadNotes(url, list) {
         USE_PROFILES: { html: true },
         RETURN_DOM_FRAGMENT: true,
       }));
+      message.querySelectorAll("a[href]").forEach((anchor) => {
+        anchor.setAttribute("rel", "nofollow noopener noreferrer ugc");
+      });
       card.append(name, message);
       return card;
     }));

@@ -26,6 +26,9 @@ export async function getStaticPaths() {
 }
 ---
 
-<Base title={`#${tag} posts | Morax`}>
+<Base
+    title={`#${tag} posts | Morax`}
+    description={`All published posts tagged #${tag} on Morax.`}
+>
     <PostList posts={posts} tag={tag} />
 </Base>

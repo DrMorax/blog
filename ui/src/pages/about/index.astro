@@ -1,9 +1,20 @@
 ---
 import Base from "@/layouts/Base.astro";
 import PageSpread from "@/components/PageSpread.astro";
+
+const siteURL = Astro.site ?? new URL("https://morax.dev");
+const description =
+    "About Morax — a cybersecurity student from Iraq building for the web with JavaScript, TypeScript, Go, and C.";
+const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Morax",
+    url: new URL("/about/", siteURL).toString(),
+    description,
+};
 ---
 
-<Base title="About | Morax">
+<Base title="About | Morax" description={description} jsonLd={personJsonLd}>
     <PageSpread>
         <h1>
             Hi, I'm <em>Morax</em> :3

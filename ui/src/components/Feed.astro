@@ -6,9 +6,10 @@ type BlogEntry = CollectionEntry<"blog">;
 
 interface Props {
     posts: BlogEntry[];
+    heading?: string;
 }
 
-const { posts } = Astro.props as Props;
+const { posts, heading = "Latest posts" } = Astro.props as Props;
 let publishedPosts = posts.filter((p) => p.data.draft !== true);
 
 const processedPosts = publishedPosts.map((post) => {
@@ -19,8 +20,9 @@ const processedPosts = publishedPosts.map((post) => {
 ---
 
 <div class="posts-wrapper">
+    <h1 class="feed-sr-only">{heading}</h1>
     {
-        processedPosts.map((post) => (
+        processedPosts.map((post, index) => (
             <div class="card post onload-animation">
                 <div class="content">
                     <div>
@@ -28,7 +30,7 @@ const processedPosts = publishedPosts.map((post) => {
                             class="ghost link heading"
                             href={`/post/${post.id}`}
                         >
-                            <h1>{post.data.title}</h1>
+                            <h2>{post.data.title}</h2>
                         </a>
                         <PostMeta post={post} />
                     </div>
@@ -44,7 +46,9 @@ const processedPosts = publishedPosts.map((post) => {
                     <div class="cover">
                         <img
                             src={`/blog/${post.id}/cover.jpg`}
-                            alt={`Cover image of ${post.id}`}
+                            alt={`Cover image for ${post.data.title}`}
+                            loading={index === 0 ? "eager" : "lazy"}
+                            decoding="async"
                         />
                     </div>
                 </a>
@@ -54,8 +58,27 @@ const processedPosts = publishedPosts.map((post) => {
 </div>
 
 <style is:inline>
+    .feed-sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        margin: 0;
+    }
+
+    .posts-wrapper .post .content h2 {
+        font-size: 2em;
+    }
+
+    @media (max-width: 50rem) {
+        .posts-wrapper .post .content h2 {
+            font-size: 1.6rem;
+        }
+    }
+
     @media (min-width: 64rem) {
-        .posts-wrapper .post .content h1::before {
+        .posts-wrapper .post .content h2::before {
             content: ".";
             position: absolute;
             padding: 0;

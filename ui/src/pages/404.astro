@@ -2,10 +2,14 @@
 import Base from "@/layouts/Base.astro";
 ---
 
-<Base>
+<Base
+    title="Page Not Found | Morax"
+    description="The page you're looking for doesn't exist."
+    noindex={true}
+>
     <div class="card" style="margin-inline: auto;">
         <div style="width: 40%; margin-inline: auto;">
-            <h2>What are you looking for?</h2>
+            <h1>What are you looking for?</h1>
             <img
                 src="/404.jpg"
                 alt="404 image"

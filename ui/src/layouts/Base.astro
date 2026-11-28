@@ -1,4 +1,6 @@
 ---
+import fs from "node:fs";
+import path from "node:path";
 import Navbar from "@/components/Navbar.astro";
 import Footer from "@/components/Footer.astro";
 
@@ -7,24 +9,46 @@ import "@/styles/themes.css";
 import "@/styles/article.css";
 import "@/styles/animations.css";
 
+interface Props {
+    title?: string;
+    description?: string;
+    image?: string;
+    type?: "website" | "article";
+    canonical?: string;
+    noindex?: boolean;
+    publishedTime?: string;
+    modifiedTime?: string;
+    jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
 const {
     title = "Morax",
     description = "A personal stash of tech notes, security experiments, and things I don't want to forget.",
     image,
+    type = "website",
+    canonical,
+    noindex = false,
+    publishedTime,
+    modifiedTime,
+    jsonLd,
 } = Astro.props;
 
+const siteURL = Astro.site ?? new URL("https://morax.dev");
+const canonicalURL = new URL(canonical ?? Astro.url.pathname, siteURL);
+
 const defaultImage = "/fallback-cover.jpg";
-
-const activeImage = image || defaultImage;
-
-const socialImageURL = new URL(activeImage, Astro.site || "https://morax.dev");
+const hasFallbackImage = fs.existsSync(
+    path.resolve("public", defaultImage.slice(1)),
+);
+const activeImage = image || (hasFallbackImage ? defaultImage : undefined);
+const socialImageURL = activeImage ? new URL(activeImage, siteURL) : undefined;
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link
             rel="alternate"
@@ -32,25 +56,59 @@ const socialImageURL = new URL(activeImage, Astro.site || "https://morax.dev");
             title="Morax"
             href="/rss.xml"
         />
+        <link rel="canonical" href={canonicalURL} />
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
         <meta name="description" content={description} />
+        {noindex && <meta name="robots" content="noindex, follow" />}
 
+        <meta property="og:site_name" content="Morax" />
+        <meta property="og:url" content={canonicalURL} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={socialImageURL} />
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content={type} />
+        {socialImageURL && <meta property="og:image" content={socialImageURL} />}
+        {
+            type === "article" && publishedTime && (
+                <meta property="article:published_time" content={publishedTime} />
+            )
+        }
+        {
+            type === "article" && modifiedTime && (
+                <meta property="article:modified_time" content={modifiedTime} />
+            )
+        }
 
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={socialImageURL} />
+        <meta
+            name="twitter:card"
+            content={socialImageURL ? "summary_large_image" : "summary"}
+        />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        {
+            socialImageURL && (
+                <meta name="twitter:image" content={socialImageURL} />
+            )
+        }
 
         <link rel="sitemap" href="/sitemap-index.xml" />
+        {
+            jsonLd && (
+                <script
+                    is:inline
+                    type="application/ld+json"
+                    set:html={JSON.stringify(jsonLd)}
+                />
+            )
+        }
         <!-- Theme and view transition stuff -->
         <script src="../scripts/barba.js"></script>
     </head>
     <body data-barba="wrapper">
-        <main>
+        <header>
             <Navbar />
+        </header>
+        <main>
             <!-- Uncomment to return the banner -->
             <!-- <div class="banner">
                 <img class="banner-image" id="heroBanner" alt="Banner image" />

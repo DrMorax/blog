@@ -7,7 +7,13 @@ import path from "path";
 // https://astro.build/config
 export default defineConfig({
   site: "https://morax.dev",
-  integrations: [sitemap(), icon()],
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        !page.endsWith("/feed/1/") && !page.endsWith("/404/"),
+    }),
+    icon(),
+  ],
   server: {
     port: 3000,
   },
